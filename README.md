@@ -139,15 +139,15 @@ The marketing site reads public branding from env at build time (no runtime DB f
 Note: This repo's marketing site is a starter template. For other businesses, it's expected you'll customize or replace the marketing site (BYO site) while keeping the CRM + automations as the reusable product.
 
 Placeholders currently in use:
-- Email: `hello@mystpressurewashing.com`
-- Phone: `(XXX) XXX-XXXX`
-- Domain: `https://mystpressurewashing.com`
+- Email: `Austin@mystwashing.com`
+- Phone: `(678) 541-7725`
+- Domain: `https://mystwashing.com`
 
 ## Deployment
 Render deployment details are tracked in `DEPLOY-ON-RENDER.md` along with the generated `render.yaml` blueprint.
 
 If deploying a branded site/API, ensure:
-- `NEXT_PUBLIC_SITE_URL` reflects the public domain (e.g., `https://mystpressurewashing.com`).
+- `NEXT_PUBLIC_SITE_URL` reflects the public domain (e.g., `https://mystwashing.com`).
 - `NEXT_PUBLIC_API_BASE_URL` and `API_BASE_URL` are set for site/server actions.
 - `ADMIN_API_KEY` is configured for admin routes and server actions.
 

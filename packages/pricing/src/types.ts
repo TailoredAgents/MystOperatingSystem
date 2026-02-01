@@ -5,6 +5,9 @@ export type ServiceCategory =
   | "deck"
   | "gutter"
   | "commercial"
+  | "fence-wash"
+  | "window-cleaning"
+  | "surface-cleaning"
   // Junk removal catalog (non-breaking additions)
   | "junk-removal"
   | "single-item"

@@ -159,7 +159,7 @@ export const DEFAULT_QUIET_HOURS_POLICY: QuietHoursPolicy = {
 
 export const DEFAULT_COMPANY_PROFILE_POLICY: CompanyProfilePolicy = {
   businessName: "Myst Pressure Washing",
-  primaryPhone: "(404) 777-2631",
+  primaryPhone: "(678) 541-7725",
   discountPercent: 0.15,
   serviceAreaSummary:
     "We serve Georgia (primarily north and central Georgia). Share your ZIP code and we will confirm availability.",
@@ -182,7 +182,7 @@ export const DEFAULT_SALES_AUTOPILOT_POLICY: SalesAutopilotPolicy = {
   retryDelayMinutes: 2,
   dmSmsFallbackAfterMinutes: 120,
   dmMinSilenceBeforeSmsMinutes: 45,
-  agentDisplayName: "Devon"
+  agentDisplayName: "Alex"
 };
 
 export const DEFAULT_INBOX_ALERTS_POLICY: InboxAlertsPolicy = {

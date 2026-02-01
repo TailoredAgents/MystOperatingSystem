@@ -43,24 +43,22 @@ export default function ServicesIndex() {
             <Card key={service.slug} className="flex h-full flex-col gap-4">
               <div>
                 <h2 className="text-2xl font-semibold text-primary-800">{service.title}</h2>
-                {service.short ? (
-                  <p className="mt-2 text-body text-neutral-600">{service.short}</p>
-                ) : null}
+                {service.short ? <p className="mt-2 text-body text-neutral-600">{service.short}</p> : null}
               </div>
               <Button variant="ghost" asChild className="mt-auto w-fit px-0 text-accent-700 hover:text-accent-800">
                 <Link href={`/services/${service.slug}`}>View details{" ->"}</Link>
               </Button>
             </Card>
           ))}
-          <Card key="commercial-services" className="flex h-full flex-col gap-4">
+          <Card key="custom-services" className="flex h-full flex-col gap-4">
             <div>
-              <h2 className="text-2xl font-semibold text-primary-800">Commercial</h2>
+              <h2 className="text-2xl font-semibold text-primary-800">Not sure what you need?</h2>
               <p className="mt-2 text-body text-neutral-600">
-                Storefronts, office parks, HOA amenities, and shared spaces — custom quotes available.
+                Tell us what surfaces you want cleaned and weâ€™ll recommend the right service and a clear next step.
               </p>
             </div>
             <Button variant="ghost" asChild className="mt-auto w-fit px-0 text-accent-700 hover:text-accent-800">
-              <Link href="/contact?type=commercial">Request commercial quote{" ->"}</Link>
+              <Link href="/contact">Request an estimate{" ->"}</Link>
             </Button>
           </Card>
         </div>

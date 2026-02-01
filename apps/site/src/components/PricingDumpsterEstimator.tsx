@@ -562,7 +562,7 @@ function PricingDumpsterEstimatorInner({ className }: { className?: string }) {
               className="min-w-[160px] justify-center"
             >
               <a
-                href="tel:+14047772631"
+                href="tel:+16785417725"
                 onClick={() => {
                   trackPricingEstimatorEvent("call_click", {
                     tier: tier.id,

@@ -274,7 +274,7 @@ export async function PolicyCenterSection(): Promise<React.ReactElement> {
       ? (companyValue["outboundCallRecordingNotice"] as string)
       : "This call may be recorded for quality and training.";
 
-  let salesAutopilotName = "Devon";
+  let salesAutopilotName = "Alex";
   try {
     const autopilotResponse = await callAdminApi("/api/admin/sales/autopilot");
     if (autopilotResponse.ok) {
@@ -287,7 +287,7 @@ export async function PolicyCenterSection(): Promise<React.ReactElement> {
       }
     }
   } catch {
-    salesAutopilotName = "Devon";
+    salesAutopilotName = "Alex";
   }
 
   const personaSetting = settingsByKey.get("conversation_persona");

@@ -16,7 +16,7 @@ Note: the public marketing site can be customized or replaced per customer. The 
   - Various UI strings (Sales/Outbound scripts, etc.)
 
 ### Phone number (primary business line)
-Hardcoded `(404) 777-2631` and `+14047772631` appear in:
+Hardcoded `(678) 541-7725` and `+16785417725` appear in:
 - `apps/site/src/components/*` (Header/Footer/Hero/Sticky CTA/Lead forms)
 - `apps/site/content/pages/*` (contact/pricing copy)
 - `apps/site/src/components/StructuredData.tsx`

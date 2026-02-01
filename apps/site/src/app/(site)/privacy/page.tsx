@@ -83,7 +83,7 @@ export default function PrivacyPolicyPage() {
         <h2>Contact</h2>
         <p>
           If you have questions about this policy, contact us at{" "}
-          <a href="mailto:hello@mystpressurewashing.com">hello@mystpressurewashing.com</a>.
+          <a href="mailto:austin@mystwashing.com">Austin@mystwashing.com</a>.
         </p>
       </div>
     </div>

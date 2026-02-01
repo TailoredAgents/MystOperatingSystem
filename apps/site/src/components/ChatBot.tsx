@@ -38,7 +38,7 @@ function fallbackResponse(message: string): string {
   if (m.includes("roof"))
     return "Roof cleaning is done with low-pressure soft-wash methods (not high pressure). Share a photo and we’ll recommend the safest approach.";
   if (m.includes("insurance") || m.includes("licensed")) return "Yes - Myst is licensed and insured. COIs available on request.";
-  return "Happy to help — ask about house wash, driveway cleaning, roof soft-wash, or say \"book me\" to schedule an estimate.";
+  return "Happy to help — ask about house wash, driveway or surface cleaning, roof soft-wash, fence washing, window cleaning, or say \"book me\" to schedule an estimate.";
 }
 
 export function ChatBot() {

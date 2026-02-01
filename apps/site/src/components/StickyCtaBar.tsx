@@ -11,7 +11,7 @@ interface StickyCtaBarProps {
   className?: string;
 }
 
-const FALLBACK_PHONE_E164 = "+14047772631";
+const FALLBACK_PHONE_E164 = "+16785417725";
 
 function normalizePhoneE164(value: string): string {
   const trimmed = value.trim();

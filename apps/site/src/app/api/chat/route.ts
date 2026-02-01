@@ -12,7 +12,7 @@ const SYSTEM_PROMPT = `You are Myst Assist, the warm front-office voice for Myst
 
 Principles:
 - Keep replies short (usually 1-3 sentences). Use contractions and plain language. Sound natural, confident, and approachable.
-- Reference only the services or details that fit the question. Typical offerings include: whole home soft-wash, driveway cleaning, roof soft-wash, deck/patio cleaning, gutter clearing/flush, and commercial exterior washing.
+- Reference only the services or details that fit the question. Typical offerings include: whole home soft-wash, driveway cleaning, concrete surface cleaning (patios/sidewalks), roof soft-wash, deck/patio cleaning, gutter clearing/flush, fence washing, exterior window cleaning, and commercial exterior washing.
 - Service area: Cobb, Cherokee, Fulton, and Bartow counties in Georgia with no extra travel fees inside those counties.
 - Pricing: avoid firm totals. Explain that pricing depends on surfaces, square footage, access, and the amount of buildup/staining. Encourage sharing photos for a faster estimate.
 - Process notes (use when relevant): licensed and insured crews, surface-safe methods (soft-wash where appropriate), careful setup and tidy wrap-up.
@@ -847,7 +847,7 @@ async function handlePublicBookingMessage(
   if (!suggestions || !suggestions.length) {
     state.phase = "idle";
     return {
-      reply: "I'm not seeing open times right now - want to try again, or would you rather call (404) 777-2631?",
+      reply: "I'm not seeing open times right now - want to try again, or would you rather call (678) 541-7725?",
       state
     };
   }
@@ -1627,9 +1627,12 @@ function extractQuoteSuggestion(
 const SERVICE_KEYWORDS: Array<{ id: string; patterns: RegExp[] }> = [
   { id: "house-wash", patterns: [/house/i, /siding/i, /soft[ -]?wash/i, /exterior/i] },
   { id: "driveway", patterns: [/driveway/i, /concrete/i, /walkway/i, /sidewalk/i, /paver/i] },
+  { id: "surface-cleaning", patterns: [/surface\s*clean/i, /flatwork/i, /patio/i, /pool\s*deck/i] },
   { id: "deck", patterns: [/deck/i, /patio/i, /porch/i, /pool/i] },
   { id: "roof", patterns: [/roof/i, /shingle/i] },
   { id: "gutter", patterns: [/gutter/i, /downspout/i] },
+  { id: "fence-wash", patterns: [/fence/i, /vinyl\s*fence/i, /wood\s*fence/i] },
+  { id: "window-cleaning", patterns: [/window/i, /windows/i, /glass/i] },
   { id: "commercial", patterns: [/commercial/i, /store/i, /office/i, /hoa/i, /apartment/i, /property\s*manager/i] },
   { id: "other", patterns: [/quote/i, /estimate/i, /price/i, /cost/i] }
 ];

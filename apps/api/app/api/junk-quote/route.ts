@@ -65,9 +65,12 @@ const RequestSchema = z.object({
         z.enum([
           "house-wash",
           "driveway",
+          "surface-cleaning",
           "roof",
           "deck",
           "gutter",
+          "fence-wash",
+          "window-cleaning",
           "commercial"
         ])
       )
@@ -212,9 +215,12 @@ function estimateDurationMinutes(job: JobInput): number {
   const serviceBaseMinutes: Record<string, number> = {
     "house-wash": 120,
     driveway: 90,
+    "surface-cleaning": 90,
     roof: 120,
     deck: 90,
     gutter: 60,
+    "fence-wash": 90,
+    "window-cleaning": 90,
     commercial: 180
   };
 
@@ -243,7 +249,10 @@ function computeInstantWashQuote(job: JobInput): QuoteResult & { durationMinutes
 
   const needsInPersonEstimate =
     (job.perceivedSize ?? "") === "not_sure" ||
-    selectedServices.includes("commercial");
+    selectedServices.includes("commercial") ||
+    selectedServices.includes("fence-wash") ||
+    selectedServices.includes("window-cleaning") ||
+    selectedServices.includes("surface-cleaning");
 
   const reasonSummary = needsInPersonEstimate
     ? "Estimate depends on surface condition and access. Share photos for a faster, tighter range."

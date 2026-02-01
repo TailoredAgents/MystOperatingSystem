@@ -13,9 +13,9 @@ export type PublicCompanyProfile = {
 
 const FALLBACK_COMPANY: PublicCompanyProfile = {
   name: "Myst Pressure Washing",
-  phoneE164: "+10000000000",
-  phoneDisplay: "(000) 000-0000",
-  email: "hello@mystpressurewashing.com",
+  phoneE164: "+16785417725",
+  phoneDisplay: "(678) 541-7725",
+  email: "Austin@mystwashing.com",
   logoPath: "/images/brand/myst-logo.svg",
   serviceAreaSummary: "Serving North Metro Atlanta and nearby Georgia communities.",
   hoursSummary: "Mon-Sat 7:30 AM-7:30 PM ET. Sunday: on-call.",

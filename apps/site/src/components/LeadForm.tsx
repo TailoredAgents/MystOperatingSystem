@@ -44,9 +44,12 @@ type LeadFormVariant = "junk" | "brush";
 type JunkType =
   | "house-wash"
   | "driveway"
+  | "surface-cleaning"
   | "roof"
   | "deck"
   | "gutter"
+  | "fence-wash"
+  | "window-cleaning"
   | "commercial";
 type BrushScope =
   | "light_brush"
@@ -62,9 +65,12 @@ type BrushAccess = "open" | "standard_gate" | "tight_gate" | "not_sure";
 const JUNK_OPTIONS: Array<{ id: JunkType; label: string }> = [
   { id: "house-wash", label: "Whole home soft-wash" },
   { id: "driveway", label: "Driveway / concrete cleaning" },
+  { id: "surface-cleaning", label: "Surface cleaning (patios / sidewalks / pool deck)" },
   { id: "deck", label: "Deck / patio / porch" },
   { id: "roof", label: "Roof soft-wash" },
   { id: "gutter", label: "Gutter clear & flush" },
+  { id: "fence-wash", label: "Fence wash" },
+  { id: "window-cleaning", label: "Exterior window cleaning" },
   { id: "commercial", label: "Commercial exterior" }
 ];
 
@@ -1538,7 +1544,7 @@ export function LeadForm({
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="mt-1 w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-700"
-                  placeholder="(404) 777-2631"
+                  placeholder="(678) 541-7725"
                 />
               </div>
               <div className="sm:col-span-2">
@@ -1881,7 +1887,7 @@ export function LeadForm({
                             : "Book this service"}
                     </Button>
                     <Button asChild variant="secondary" className="justify-center">
-                      <a href="tel:+14047772631" aria-label="Call to confirm and book">
+                      <a href="tel:+16785417725" aria-label="Call to confirm and book">
                         Call to confirm &amp; book
                       </a>
                     </Button>

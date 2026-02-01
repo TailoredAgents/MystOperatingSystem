@@ -188,7 +188,7 @@ export async function AccessSection(): Promise<React.ReactElement> {
                             name="email"
                             type="email"
                             defaultValue={member.email ?? ""}
-                            placeholder="devon@mystpressurewashing.com"
+                            placeholder="alex@mystwashing.com"
                             className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100"
                           />
                         </label>

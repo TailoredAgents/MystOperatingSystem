@@ -10,7 +10,7 @@ const fallbackDescription =
 const configuredSiteUrl = process.env["NEXT_PUBLIC_SITE_URL"]?.trim();
 const normalizedSiteUrl = configuredSiteUrl && /^https?:\/\//.test(configuredSiteUrl)
   ? configuredSiteUrl.replace(/\/+$/u, "")
-  : "https://mystpressurewashing.com";
+  : "https://mystwashing.com";
 
 export const siteUrl = normalizedSiteUrl;
 

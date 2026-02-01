@@ -48,7 +48,7 @@ export default function TwitterImage() {
           <div style={{ fontSize: 22, fontWeight: 600, opacity: 0.9 }}>
             Request an estimate • Text us photos • Same-week openings
           </div>
-          <div style={{ fontSize: 22, fontWeight: 700, opacity: 0.9 }}>mystpressurewashing.com</div>
+          <div style={{ fontSize: 22, fontWeight: 700, opacity: 0.9 }}>mystwashing.com</div>
         </div>
       </div>
     ),

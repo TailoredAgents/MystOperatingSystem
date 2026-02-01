@@ -56,7 +56,7 @@ export default async function TeamLoginPage({
                 type="text"
                 required
                 className="mt-1 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100"
-                placeholder="you@mystpressurewashing.com or +16785551234"
+                placeholder="you@mystwashing.com or +16785551234"
               />
             </label>
             <button
@@ -79,7 +79,7 @@ export default async function TeamLoginPage({
                 type="email"
                 required
                 className="mt-1 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100"
-                placeholder="you@mystpressurewashing.com"
+                placeholder="you@mystwashing.com"
               />
             </label>
             <label className="block">

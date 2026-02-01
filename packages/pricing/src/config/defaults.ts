@@ -130,6 +130,28 @@ export const serviceRates: ServiceBaseRate[] = [
     basePrice: 499,
     pricePerSquareFoot: 0.25,
     includesTravel: true
+  },
+  {
+    service: "surface-cleaning",
+    label: "Surface Cleaning (Concrete)",
+    description: "Patios, sidewalks, pool decks, and other flatwork.",
+    basePrice: 159,
+    pricePerSquareFoot: 0.12,
+    minimumSquareFootage: 500
+  },
+  {
+    service: "fence-wash",
+    label: "Fence Washing",
+    description: "Gentle wash for vinyl and treated wood fences.",
+    flatRate: 199,
+    basePrice: 199
+  },
+  {
+    service: "window-cleaning",
+    label: "Exterior Window Cleaning",
+    description: "Exterior glass cleaning for accessible windows.",
+    flatRate: 179,
+    basePrice: 179
   }
 ];
 

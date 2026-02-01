@@ -126,9 +126,15 @@ const WASH_SERVICE_KEYS = new Set([
   "house_wash",
   "house-wash",
   "driveway",
+  "surface_cleaning",
+  "surface-cleaning",
   "roof",
   "deck",
   "gutter",
+  "fence_wash",
+  "fence-wash",
+  "window_cleaning",
+  "window-cleaning",
   "commercial"
 ]);
 
