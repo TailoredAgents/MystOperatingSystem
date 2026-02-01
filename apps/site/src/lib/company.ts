@@ -12,11 +12,11 @@ export type PublicCompanyProfile = {
 };
 
 const FALLBACK_COMPANY: PublicCompanyProfile = {
-  name: "Stonegate Junk Removal",
-  phoneE164: "+14047772631",
-  phoneDisplay: "(404) 777-2631",
-  email: "austin@stonegatejunkremoval.com",
-  logoPath: "/images/brand/Stonegatelogo.png",
+  name: "Myst Pressure Washing",
+  phoneE164: "+10000000000",
+  phoneDisplay: "(000) 000-0000",
+  email: "hello@mystpressurewashing.com",
+  logoPath: "/images/brand/myst-logo.svg",
   serviceAreaSummary: "Serving North Metro Atlanta and nearby Georgia communities.",
   hoursSummary: "Mon-Sat 7:30 AM-7:30 PM ET. Sunday: on-call.",
   hqCity: "Woodstock",

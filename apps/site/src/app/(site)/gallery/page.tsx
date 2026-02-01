@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Card, Section } from "@myst-os/ui";
 import { MdxContent } from "@/components/MdxContent";
+import { getPublicCompanyProfile } from "@/lib/company";
 import { getPageBySlug } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -10,13 +11,13 @@ export const metadata = createPageMetadata("gallery");
 const galleryItems = [
   {
     src: "/images/gallery/garage_before_after_split_1080p.jpg",
-    alt: "Before and after garage cleanout with debris removed and floor swept",
-    caption: "Garage cleanout — before and after"
+    alt: "Before and after exterior cleaning result",
+    caption: "Before and after"
   },
   {
     src: "/images/gallery/trailer_16x9.jpg",
-    alt: "Stonegate 7x16 dumpster trailer ready for junk removal service",
-    caption: "7x16 dumpster trailer — ready for your pickup"
+    alt: "Service vehicle ready for a local appointment",
+    caption: "Ready for your appointment"
   }
 ];
 
@@ -26,11 +27,13 @@ export default function Page() {
     notFound();
   }
 
+  const company = getPublicCompanyProfile();
+
   return (
     <Section>
       <div className="mx-auto max-w-4xl space-y-6">
         <header className="space-y-3">
-          <p className="text-label uppercase tracking-[0.28em] text-neutral-500">Stonegate Junk Removal</p>
+          <p className="text-label uppercase tracking-[0.28em] text-neutral-500">{company.name}</p>
           <h1 className="font-display text-display text-primary-800">{page.title}</h1>
           {page.description ? (
             <p className="text-body text-neutral-600">{page.description}</p>

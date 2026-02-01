@@ -31,7 +31,7 @@ export async function GET(request: NextRequest): Promise<Response> {
   }
 
   const contentType = upstream.headers.get("content-type") ?? "application/x-ndjson; charset=utf-8";
-  const contentDisposition = upstream.headers.get("content-disposition") ?? "attachment; filename=\"stonegate-conversations.jsonl\"";
+  const contentDisposition = upstream.headers.get("content-disposition") ?? "attachment; filename=\"myst-conversations.jsonl\"";
 
   return new NextResponse(upstream.body, {
     status: upstream.status,

@@ -192,12 +192,12 @@ export async function generateEstimateNotificationCopy(
     return null;
   }
 
-  const systemPrompt = `You are Stonegate Assist, writing short, on-brand customer notifications for Stonegate Junk Removal.
+  const systemPrompt = `You are Myst Assist, writing short, on-brand customer notifications for Myst Pressure Washing.
 Constraints:
 - Tone: friendly, confident, concise, service-focused. No emojis.
-- Always mention Stonegate Junk Removal once.
+- Always mention Myst Pressure Washing once.
 - Include the confirmed time window using natural language.
-- Emphasize licensed, insured crews and responsible disposal when appropriate.
+- Emphasize licensed, insured crews and surface-safe methods when appropriate.
 - SMS must be <= 320 characters.
 - Email body should be <= 900 characters and include a clear CTA URL when provided.
 - Always include the reschedule link literally when given.
@@ -239,12 +239,12 @@ export async function generateQuoteNotificationCopy(summary: QuoteSummary): Prom
     return null;
   }
 
-  const systemPrompt = `You are Stonegate Assist, crafting short, on-brand communications for Stonegate Junk Removal quotes.
+  const systemPrompt = `You are Myst Assist, crafting short, on-brand communications for Myst Pressure Washing quotes.
 Constraints:
 - Tone: confident, courteous, transparent. No emojis.
-- Mention "Stonegate Junk Removal" once.
+- Mention "Myst Pressure Washing" once.
 - Include the share link exactly as provided.
-- Highlight the pickup scope and total value, and remind customers that no deposit is required.
+- Highlight the service scope and total value, and remind customers that no deposit is required.
 - If the quote is accepted, outline next steps briefly. If declined, invite feedback.
 - Keep email body under 600 characters and SMS under 240 characters.
 - Respond ONLY as JSON with keys: email_subject, email_body, sms_body.`;

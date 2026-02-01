@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: stonegate-site
+    name: myst-site
     env: node
     plan: starter
     region: virginia
@@ -71,7 +71,7 @@ services:
         - pnpm-lock.yaml
         - turbo.json
   - type: web
-    name: stonegate-api
+    name: myst-api
     env: node
     plan: starter
     region: virginia
@@ -106,7 +106,7 @@ services:
         value: "20"
       - key: DATABASE_URL
         fromDatabase:
-          name: stonegate-db
+          name: myst-db
           property: connectionString
       - key: API_BASE_URL
         sync: false
@@ -219,7 +219,7 @@ services:
         - pnpm-lock.yaml
         - turbo.json
   - type: worker
-    name: stonegate-outbox-worker
+    name: myst-outbox-worker
     env: node
     plan: starter
     region: virginia
@@ -243,7 +243,7 @@ services:
         value: "20"
       - key: DATABASE_URL
         fromDatabase:
-          name: stonegate-db
+          name: myst-db
           property: connectionString
       - key: NEXT_PUBLIC_SITE_URL
         sync: false
@@ -326,9 +326,9 @@ services:
       - key: GOOGLE_ADS_SYNC_DISABLED
         sync: false
 databases:
-  - name: stonegate-db
+  - name: myst-db
     plan: basic-1gb
     region: virginia
-    databaseName: stonegate
-    user: stonegate
+    databaseName: mystos
+    user: myst
     ipAllowList: []

@@ -234,11 +234,11 @@ export async function PolicyCenterSection(): Promise<React.ReactElement> {
   const companyBusinessName =
     typeof companyValue["businessName"] === "string" && companyValue["businessName"].trim().length > 0
       ? companyValue["businessName"]
-      : "Stonegate Junk Removal";
+      : "Myst Pressure Washing";
   const companyPrimaryPhone =
     typeof companyValue["primaryPhone"] === "string" && companyValue["primaryPhone"].trim().length > 0
       ? companyValue["primaryPhone"]
-      : "(404) 777-2631";
+      : "(000) 000-0000";
   const companyDiscountPercent = (() => {
     const raw = companyValue["discountPercent"];
     const num = typeof raw === "number" ? raw : typeof raw === "string" ? Number(raw) : NaN;
@@ -252,15 +252,15 @@ export async function PolicyCenterSection(): Promise<React.ReactElement> {
   const companyTrailerAndPricingSummary =
     typeof companyValue["trailerAndPricingSummary"] === "string" && companyValue["trailerAndPricingSummary"].trim().length > 0
       ? companyValue["trailerAndPricingSummary"]
-      : "We use a 7x16x4 dump trailer. Pricing is strictly based on trailer volume in quarter trailer increments. Photos help us estimate quickly.";
+      : "Pricing depends on surfaces, square footage, access, and the amount of buildup/staining. Photos help us estimate quickly.";
   const companyWhatWeDo =
     typeof companyValue["whatWeDo"] === "string" && companyValue["whatWeDo"].trim().length > 0
       ? companyValue["whatWeDo"]
-      : "Junk removal and hauling for household and light commercial items.";
+      : "Pressure washing and soft washing for residential and commercial exteriors.";
   const companyWhatWeDontDo =
     typeof companyValue["whatWeDontDo"] === "string" && companyValue["whatWeDontDo"].trim().length > 0
       ? companyValue["whatWeDontDo"]
-      : "We do not service out of area locations. We do not take hazmat, oils, or paints. Ask if unsure.";
+      : "We do not service out-of-area locations. We do not perform interior cleaning. Ask if unsure.";
   const companyBookingStyle =
     typeof companyValue["bookingStyle"] === "string" && companyValue["bookingStyle"].trim().length > 0
       ? companyValue["bookingStyle"]

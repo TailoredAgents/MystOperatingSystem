@@ -1,4 +1,3 @@
-import "@/lib/react-internals-polyfill";
 import type { Metadata } from "next";
 import { absoluteUrl, siteUrl } from "@/lib/metadata";
 import { getPublicCompanyProfile } from "@/lib/company";
@@ -8,7 +7,7 @@ import "./globals.css";
 const company = getPublicCompanyProfile();
 const defaultTitle = company.name;
 const defaultDescription =
-  "Fast, reliable junk removal and hauling across North Metro Atlanta. Schedule an on-site estimate and get clutter cleared responsibly with licensed, insured crews.";
+  "Professional pressure washing and soft washing across North Metro Atlanta. Request an estimate and restore your curb appeal with safe, insured crews.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

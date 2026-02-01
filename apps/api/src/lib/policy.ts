@@ -158,17 +158,17 @@ export const DEFAULT_QUIET_HOURS_POLICY: QuietHoursPolicy = {
 };
 
 export const DEFAULT_COMPANY_PROFILE_POLICY: CompanyProfilePolicy = {
-  businessName: "Stonegate Junk Removal",
+  businessName: "Myst Pressure Washing",
   primaryPhone: "(404) 777-2631",
   discountPercent: 0.15,
   serviceAreaSummary:
     "We serve Georgia (primarily north and central Georgia). Share your ZIP code and we will confirm availability.",
   trailerAndPricingSummary:
-    "We use a 7x16x4 dump trailer. Pricing is strictly based on trailer volume. Single item pickup starts at $75; quarter load $150; half load $300; 3/4 load $450; full load $600. Photos help us estimate quickly.",
-  whatWeDo: "Junk removal and hauling for household and light commercial items.",
-  whatWeDontDo: "We do not take hazmat, oils, or paints. Ask if unsure.",
+    "Pricing depends on the surfaces being cleaned, the approximate size, access, and staining. Photos help us quote quickly. We'll confirm details on-site if conditions differ from what was shared.",
+  whatWeDo: "Pressure washing and soft washing for homes and light commercial properties.",
+  whatWeDontDo: "We do not use high pressure on roofs, and we do not clean interior spaces. Ask if unsure.",
   bookingStyle:
-    "Offer 2 concrete options and move to booking. Ask for zip code first, then items and timing. If photos are available, request them. If we have enough info, propose a time and book it.",
+    "Offer 2 concrete options and move to booking. Ask for zip code first, then surfaces and timing. If photos are available, request them. If we have enough info, propose a time and book it.",
   agentNotes:
     "Keep replies short, friendly, and human. Avoid lists and avoid dash characters. No links. If ZIP is outside our service area, politely say we can't serve that area.",
   outboundCallRecordingNotice:
@@ -207,7 +207,7 @@ export const DEFAULT_REVIEW_REQUEST_POLICY: ReviewRequestPolicy = {
 
 export const DEFAULT_CONVERSATION_PERSONA_POLICY: ConversationPersonaPolicy = {
   systemPrompt: [
-    "You are the warm, human, front-office voice for Stonegate Junk Removal.",
+    "You are the warm, human, front-office voice for Myst Pressure Washing.",
     "Write the next reply the customer will receive.",
     "",
     "Rules:",
@@ -580,15 +580,15 @@ export const DEFAULT_ITEM_POLICIES: ItemPoliciesPolicy = {
 
 export const DEFAULT_TEMPLATES_POLICY: TemplatesPolicy = {
   first_touch: {
-    sms: "Hey, this is Stonegate Junk Removal. What all do you need removed and when would you like us to come out? If you can, send a couple photos. If you have not shared your ZIP code yet, please include it.",
+    sms: "Hey, this is Myst Pressure Washing. What surfaces do you want cleaned, and when would you like us to come out? If you can, send a couple photos. If you have not shared your ZIP code yet, please include it.",
     email:
-      "Thanks for contacting Stonegate Junk Removal. What items do you need removed and what timeframe are you aiming for? Photos help us quote quickly. If you have not shared your ZIP code yet, please include it.",
-    dm: "Hey, this is Stonegate Junk Removal. What all do you need removed and when do you need it gone? Photos help. If you have not shared your ZIP code yet, please include it.",
-    call: "Sorry we missed you. Text back what you need removed, when you want it gone, and any photos you have. If you have not shared your ZIP code yet, please include it so we can confirm availability.",
-    web: "Hey, this is Stonegate Junk Removal. What all do you need removed and when do you need it gone? Photos help. If you have not shared your ZIP code yet, please include it."
+      "Thanks for contacting Myst Pressure Washing. What surfaces do you want cleaned and what timeframe are you aiming for? Photos help us quote quickly. If you have not shared your ZIP code yet, please include it.",
+    dm: "Hey, this is Myst Pressure Washing. What surfaces do you want cleaned and when do you need it done? Photos help. If you have not shared your ZIP code yet, please include it.",
+    call: "Sorry we missed you. Text back what surfaces you want cleaned, when you want it done, and any photos you have. If you have not shared your ZIP code yet, please include it so we can confirm availability.",
+    web: "Hey, this is Myst Pressure Washing. What surfaces do you want cleaned and when do you need it done? Photos help. If you have not shared your ZIP code yet, please include it."
   },
   follow_up: {
-    sms: "Just checking in. Do you want to lock in a time for your junk removal?",
+    sms: "Just checking in. Do you want to lock in a time for your pressure washing?",
     email: "Following up on your quote request. Let us know if you want to schedule."
   },
   confirmations: {
@@ -596,14 +596,14 @@ export const DEFAULT_TEMPLATES_POLICY: TemplatesPolicy = {
     email: "Your appointment is confirmed. Reply YES if everything looks right."
   },
   reviews: {
-    sms: "Thanks for choosing Stonegate! Would you leave a quick review?",
+    sms: "Thanks for choosing Myst! Would you leave a quick review?",
     email: "We appreciate your business. If you have a moment, please share a review."
   },
   out_of_area: {
-    sms: "Thanks for reaching out. We serve Georgia. What ZIP is the job in, and what do you need removed? We will confirm availability.",
+    sms: "Thanks for reaching out. We serve Georgia. What ZIP is the job in, and what surfaces do you want cleaned? We will confirm availability.",
     email:
-      "Thanks for reaching out. We serve Georgia. What ZIP is the job in, and what do you need removed? We will confirm availability.",
-    web: "We serve Georgia. Share the job ZIP code and what you need removed and we will confirm availability."
+      "Thanks for reaching out. We serve Georgia. What ZIP is the job in, and what surfaces do you want cleaned? We will confirm availability.",
+    web: "We serve Georgia. Share the job ZIP code and what surfaces you want cleaned and we will confirm availability."
   }
 };
 

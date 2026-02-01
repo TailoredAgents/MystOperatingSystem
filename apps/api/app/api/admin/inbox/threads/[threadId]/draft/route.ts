@@ -127,7 +127,7 @@ export async function POST(
           participantId,
           direction: "outbound",
           channel: messageChannel,
-          subject: messageChannel === "email" ? subject ?? "Stonegate message" : null,
+          subject: messageChannel === "email" ? subject ?? "Myst message" : null,
           body,
           toAddress,
           deliveryStatus: "queued",

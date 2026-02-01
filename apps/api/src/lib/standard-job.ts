@@ -122,6 +122,16 @@ const SERVICE_ALIAS: Record<string, string[]> = {
 
 const LOAD_TO_CUBIC_YARDS = 12;
 
+const WASH_SERVICE_KEYS = new Set([
+  "house_wash",
+  "house-wash",
+  "driveway",
+  "roof",
+  "deck",
+  "gutter",
+  "commercial"
+]);
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
@@ -239,6 +249,21 @@ export function evaluateStandardJob(
   const reasons: string[] = [];
   const normalizedTypes = normalizeJobTypes(input.jobTypes);
   const needsInPersonEstimate = resolveNeedsInPersonEstimate(input.aiResult ?? null);
+  const isWashJob = normalizedTypes.some((type) => WASH_SERVICE_KEYS.has(type));
+
+  if (isWashJob) {
+    if (needsInPersonEstimate) {
+      reasons.push("needs_in_person_estimate");
+    }
+    return {
+      isStandard: reasons.length === 0,
+      reasons,
+      declinedItems: [],
+      extraFees: [],
+      estimatedVolumeCubicYards: null,
+      needsInPersonEstimate
+    };
+  }
 
   if (!isServiceAllowed(normalizedTypes, standardPolicy)) {
     reasons.push("service_not_allowed");

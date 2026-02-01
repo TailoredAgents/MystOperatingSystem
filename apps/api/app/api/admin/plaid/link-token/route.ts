@@ -20,13 +20,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
   try {
     const res = await plaid.linkTokenCreate({
-      client_name: "Stonegate Owner HQ",
+      client_name: "Myst Owner HQ",
       language: "en",
       country_codes: ["US" as CountryCode],
       products: ["transactions" as Products],
       user: {
         // single-tenant; use a unique but stable id
-        client_user_id: `stonegate-${nanoid(12)}`
+        client_user_id: `myst-${nanoid(12)}`
       }
     });
     return NextResponse.json({ ok: true, link_token: res.data.link_token });

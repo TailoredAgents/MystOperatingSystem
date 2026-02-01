@@ -517,7 +517,7 @@ export function SalesHqClient({
                     className={teamButtonClass("primary", "sm")}
                     onClick={() => {
                       const label = selectedItem.contact.phone ?? "this contact";
-                      if (!window.confirm(`Call ${selectedItem.contact.name} (${label}) from the Stonegate number?`)) return;
+                      if (!window.confirm(`Call ${selectedItem.contact.name} (${label}) from the Myst number?`)) return;
                       void startCall(selectedItem.contact.id, selectedItem.id);
                     }}
                     disabled={actionBusy || !selectedItem.contact.phone}

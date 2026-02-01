@@ -120,7 +120,7 @@ function sanitizeNameCandidate(value: string): string | null {
 
   if (!cleaned) return null;
   const lowered = cleaned.toLowerCase();
-  if (lowered.includes("stonegate")) return null;
+  if (/\bmyst\b/.test(lowered)) return null;
   if (lowered.includes("@")) return null;
   if (GENERIC_NON_NAME_VALUES.has(lowered)) return null;
 
@@ -265,8 +265,9 @@ function extractNameFromText(body: string, options?: { allowFirstLineFallback?: 
 
   const parts = firstLineCandidate.split(" ").filter(Boolean);
   if (parts.length < 2 || parts.length > 4) return null;
-  if (firstLineCandidate.toLowerCase().includes("stonegate")) return null;
-  if (firstLineCandidate.toLowerCase().includes("junk")) return null;
+  const firstLineLowered = firstLineCandidate.toLowerCase();
+  if (/\bmyst\b/.test(firstLineLowered)) return null;
+  if (/\b(junk|pressure|washing)\b/.test(firstLineLowered)) return null;
 
   const looksLikeName = parts.every((part) => /^[A-Za-z][A-Za-z'’-]{0,25}$/.test(part));
   if (!looksLikeName) return null;

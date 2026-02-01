@@ -283,12 +283,12 @@ function getCodeVersion(): string | null {
 
 function buildInternalLinks(topic: SeoTopic): Array<{ label: string; url: string }> {
   let cityAreaLink: { label: string; url: string } | null = null;
-  if (typeof topic.key === "string" && topic.key.startsWith("junk-removal-") && topic.key.endsWith("-ga")) {
-    const cityKey = topic.key.replace(/^junk-removal-/, "").replace(/-ga$/, "");
+  if (typeof topic.key === "string" && topic.key.startsWith("pressure-washing-") && topic.key.endsWith("-ga")) {
+    const cityKey = topic.key.replace(/^pressure-washing-/, "").replace(/-ga$/, "");
     const match = AREA_SLUGS_BY_TOPIC_CITY_KEY[cityKey];
     if (match) {
       cityAreaLink = {
-        label: `Junk removal in ${match.city}, ${SERVICE_STATE}`,
+        label: `Pressure washing in ${match.city}, ${SERVICE_STATE}`,
         url: `/areas/${match.slug}`
       };
     }
@@ -306,12 +306,12 @@ function buildInternalLinks(topic: SeoTopic): Array<{ label: string; url: string
   }
 
   const serviceLabels: Record<string, string> = {
-    furniture: "Furniture removal",
-    appliances: "Appliance removal",
-    "yard-waste": "Yard waste removal",
-    "construction-debris": "Construction debris removal",
-    "hot-tub": "Hot tub removal",
-    "single-item": "Rubbish removal"
+    "house-wash": "House washing",
+    driveway: "Driveway cleaning",
+    roof: "Roof soft washing",
+    deck: "Deck & patio cleaning",
+    gutter: "Gutter cleaning",
+    commercial: "Commercial pressure washing"
   };
 
   for (const slug of topic.relatedServiceSlugs) {
@@ -323,13 +323,13 @@ function buildInternalLinks(topic: SeoTopic): Array<{ label: string; url: string
 
 async function generateBrief(topic: SeoTopic, apiKey: string, brainModel: string): Promise<BriefGenResult> {
   const cityLine = SERVICE_CITIES.map((city) => `${city}, ${SERVICE_STATE}`).join("; ");
-  const systemPrompt = `You are an SEO content strategist for Stonegate Junk Removal (North Metro Atlanta).
+  const systemPrompt = `You are an SEO content strategist for Myst Pressure Washing (North Metro Atlanta).
   Hard rules:
   - Do NOT include any dollar amounts.
   - Do NOT mention any counties outside Cobb, Cherokee, Fulton, and Bartow.
   - Keep the content geographically relevant to our core service cities: ${cityLine}.
   - Do NOT invent statistics, rankings, awards, or partnerships.
-  - Keep it practical and specific to junk removal.
+  - Keep it practical and specific to pressure washing.
   Return ONLY JSON with: title, metaDescription, excerpt, outline (array of section headings).
   metaDescription must be <= 155 characters when possible.`.trim();
 

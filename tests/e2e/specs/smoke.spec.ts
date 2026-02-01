@@ -1,8 +1,8 @@
 import { test, expect } from "../test";
 
-const heroHeading = /junk removal that clears clutter fast and responsibly/i;
+const heroHeading = /pressure washing that restores curb appeal fast and safely/i;
 
-test.describe("Stonegate smoke", () => {
+test.describe("Myst smoke", () => {
   test("home hero renders call-to-action", async ({ page }) => {
     await test.step("Navigate to home page", async () => {
       await page.goto("/");

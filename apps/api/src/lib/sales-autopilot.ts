@@ -332,7 +332,7 @@ function stripLinks(text: string): string {
   return text
     .replace(/\bhttps?:\/\/\S+/gi, "")
     .replace(/\bwww\.\S+/gi, "")
-    .replace(/\bstonegatejunkremoval\.com\S*/gi, "")
+    .replace(/\b(?:mystpressurewashing\.com|stonegatejunkremoval\.com)\S*/gi, "")
     .replace(/\/book\b/gi, "")
     .replace(/[ \t]{2,}/g, " ")
     .trim();

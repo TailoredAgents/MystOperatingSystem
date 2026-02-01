@@ -62,7 +62,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
         />
         <Breadcrumbs items={breadcrumbItems} />
         <header className="space-y-3">
-          <Badge tone="default">Stonegate Service</Badge>
+          <Badge tone="default">Myst Service</Badge>
           <h1 className="font-display text-display text-primary-800">{service.title}</h1>
           {service.short ? (
             <p className="text-body text-neutral-600">{service.short}</p>
@@ -103,9 +103,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
           </div>
         ) : null}
         <Button asChild>
-          <Link href={service.slug === "brush-clearing" ? "/bookbrush" : "/estimate"}>
-            {service.slug === "brush-clearing" ? "Get brush clearing estimate" : "Schedule an on-site estimate"}
-          </Link>
+          <Link href="/estimate">Request an estimate</Link>
         </Button>
       </div>
     </Section>

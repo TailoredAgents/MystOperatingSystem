@@ -35,11 +35,11 @@ async function fetchPosts() {
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Helpful local guides, checklists, and cleanup tips from Stonegate Junk Removal in North Metro Atlanta.",
+    "Helpful local guides and tips for pressure washing and exterior maintenance in North Metro Atlanta.",
   openGraph: {
     title: "Blog",
     description:
-      "Helpful local guides, checklists, and cleanup tips from Stonegate Junk Removal in North Metro Atlanta.",
+      "Helpful local guides and tips for pressure washing and exterior maintenance in North Metro Atlanta.",
     url: absoluteUrl("/blog"),
     type: "website"
   },
@@ -66,7 +66,7 @@ export default async function Page() {
           <p className="text-label uppercase tracking-[0.28em] text-neutral-500">{company.name}</p>
           <h1 className="font-display text-display text-primary-800">Blog</h1>
           <p className="text-body text-neutral-600">
-            Local cleanout tips, checklists, and pickup prep guides for North Metro Atlanta.
+            Local guides and exterior maintenance tips for North Metro Atlanta.
           </p>
         </header>
 

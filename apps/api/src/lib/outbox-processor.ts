@@ -1364,7 +1364,7 @@ async function buildNotificationPayload(
     contactNameParts.join(" ").trim() ||
     row.contactFirstName ||
     row.contactLastName ||
-    "Stonegate Customer";
+    "Myst Customer";
   const overrideContactPhone =
     typeof overrides?.contact?.phone === "string" && overrides.contact.phone.trim().length > 0
       ? overrides.contact.phone.trim()
@@ -1478,7 +1478,7 @@ async function buildQuoteNotificationPayload(
   const contactNameParts = [row.contactFirstName, row.contactLastName].filter(
     (value): value is string => typeof value === "string" && value.trim().length > 0
   );
-  const customerName = contactNameParts.join(" ").trim() || row.contactFirstName || "Stonegate Customer";
+  const customerName = contactNameParts.join(" ").trim() || row.contactFirstName || "Myst Customer";
 
   const total = Number(row.total ?? 0);
   const depositDue = Number(row.depositDue ?? 0);
@@ -1695,7 +1695,7 @@ async function ensureThreadForLead(
       propertyId: input.propertyId,
       status: "open",
       channel: input.channel,
-      subject: input.channel === "email" ? "Stonegate follow-up" : null,
+      subject: input.channel === "email" ? "Myst follow-up" : null,
       lastMessagePreview: "Follow-up scheduled",
       lastMessageAt: now,
       createdAt: now,
@@ -1737,7 +1737,7 @@ async function ensureThreadForContactChannel(
       propertyId: latestLead?.propertyId ?? null,
       status: "open",
       channel: input.channel,
-      subject: input.channel === "email" ? "Stonegate follow-up" : null,
+      subject: input.channel === "email" ? "Myst follow-up" : null,
       lastMessagePreview: "Follow-up scheduled",
       lastMessageAt: now,
       createdAt: now,
@@ -1778,7 +1778,7 @@ async function queueOutboundMessage(input: {
         .values({
           threadId: input.threadId,
           participantType: "system",
-          displayName: "Stonegate Assistant",
+          displayName: "Myst Assistant",
           createdAt: now
         })
         .returning({ id: conversationParticipants.id })
@@ -1898,7 +1898,7 @@ async function queueAutoFirstTouchSms(input: {
   const templateGroup = isOutOfArea ? templatesPolicy.out_of_area : templatesPolicy.first_touch;
   const body =
     resolveTemplateForChannel(templateGroup, { replyChannel: "sms" }) ??
-    "Thanks for reaching out to Stonegate Junk Removal. We can help. What items are you needing removed and what timeframe?";
+    "Thanks for reaching out to Myst Pressure Washing. We can help. What surfaces do you want cleaned, and what timeframe are you aiming for? Photos help.";
 
   const threadId = input.leadId
     ? await ensureThreadForLead(input.db, {
@@ -2556,7 +2556,7 @@ async function handleOutboxEvent(event: OutboxEventRecord): Promise<OutboxOutcom
       const templates = await getTemplatesPolicy(db);
       const base =
         resolveTemplateForChannel(templates.reviews, { inboundChannel: "sms", replyChannel: "sms" }) ??
-        "Thanks for choosing Stonegate! Would you leave a quick review?";
+        "Thanks for choosing Myst! Would you leave a quick review?";
       const body = base.includes(reviewUrl) ? base : `${base} ${reviewUrl}`;
 
       const threadId =
@@ -3205,7 +3205,7 @@ async function handleOutboxEvent(event: OutboxEventRecord): Promise<OutboxOutcom
       const leadEventSource =
         typeof process.env["META_LEAD_EVENT_SOURCE"] === "string" && process.env["META_LEAD_EVENT_SOURCE"].trim().length > 0
           ? process.env["META_LEAD_EVENT_SOURCE"].trim()
-          : "StonegateOS";
+          : "MystOperatingSystem";
       const eventName = typeof payload?.["eventName"] === "string" ? payload["eventName"] : "Lead";
 
       const db = getDb();
@@ -3587,8 +3587,8 @@ async function handleOutboxEvent(event: OutboxEventRecord): Promise<OutboxOutcom
       const templates = await getTemplatesPolicy(db);
       const body =
         resolveTemplateForChannel(templates.follow_up, { replyChannel: channel }) ??
-        "Just checking in - do you want to lock in a time for your junk removal?";
-      const subject = channel === "email" ? "Stonegate follow-up" : null;
+        "Just checking in - do you want to lock in a time for your pressure washing?";
+      const subject = channel === "email" ? "Myst follow-up" : null;
 
       const messageId = await queueOutboundMessage({
         db,
@@ -4146,7 +4146,7 @@ async function handleOutboxEvent(event: OutboxEventRecord): Promise<OutboxOutcom
       }
 
       const channel = message.channel ?? "sms";
-      const subject = message.subject ?? "Stonegate message";
+      const subject = message.subject ?? "Myst message";
       const body = message.body ?? "";
       const mediaUrls = Array.isArray(message.mediaUrls)
         ? message.mediaUrls.filter((url): url is string => typeof url === "string" && url.trim().length > 0)

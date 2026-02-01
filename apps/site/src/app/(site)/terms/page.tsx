@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Terms of Service | Stonegate Junk Removal",
-  description: "Terms and conditions for using Stonegate Junk Removal's website and services."
+  title: "Terms of Service | Myst Pressure Washing",
+  description: "Terms and conditions for using Myst Pressure Washing's website and services."
 };
 
 function formatDate(date: Date): string {
@@ -23,7 +23,7 @@ export default function TermsPage() {
 
         <h2>Quotes and scheduling</h2>
         <p>
-          Quotes and schedules may change based on on-site conditions, access, volume, and material type. Final pricing
+          Quotes and schedules may change based on on-site conditions, access, surface condition, and scope. Final pricing
           is confirmed by our team.
         </p>
 
@@ -43,7 +43,7 @@ export default function TermsPage() {
 
         <h2>Limitation of liability</h2>
         <p>
-          To the maximum extent permitted by law, Stonegate will not be liable for indirect, incidental, special, or
+          To the maximum extent permitted by law, Myst will not be liable for indirect, incidental, special, or
           consequential damages arising from your use of the website.
         </p>
 
@@ -53,7 +53,7 @@ export default function TermsPage() {
         <h2>Contact</h2>
         <p>
           Questions about these Terms? Email{" "}
-          <a href="mailto:austin@stonegatejunkremoval.com">austin@stonegatejunkremoval.com</a>.
+          <a href="mailto:hello@mystpressurewashing.com">hello@mystpressurewashing.com</a>.
         </p>
       </div>
     </div>

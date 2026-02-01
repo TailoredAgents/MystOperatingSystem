@@ -45,7 +45,7 @@ async function ensureThreadForContactChannel(
       propertyId: latestLead?.propertyId ?? null,
       status: "open",
       channel: input.channel,
-      subject: input.channel === "email" ? "Stonegate" : null,
+      subject: input.channel === "email" ? "Myst" : null,
       lastMessagePreview: "System message queued",
       lastMessageAt: now,
       createdAt: now,
@@ -70,7 +70,7 @@ async function ensureSystemParticipant(db: DbExecutor, threadId: string, created
     .values({
       threadId,
       participantType: "system",
-      displayName: "Stonegate Assistant",
+      displayName: "Myst Assistant",
       createdAt
     })
     .returning({ id: conversationParticipants.id });

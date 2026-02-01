@@ -125,7 +125,7 @@ export function GoogleAdsRecommendationsPanel(props: {
 
   const exportApprovedNegatives = React.useCallback(() => {
     const rows = approvedNegatives.map((term) => ({ term }));
-    downloadFile(`stonegate-google-ads-approved-negatives.csv`, buildCsv(rows));
+    downloadFile(`myst-google-ads-approved-negatives.csv`, buildCsv(rows));
   }, [approvedNegatives]);
 
   const exportAllApproved = React.useCallback(() => {
@@ -148,7 +148,7 @@ export function GoogleAdsRecommendationsPanel(props: {
         createdAt: safeString(item.createdAt)
       });
     }
-    downloadFile(`stonegate-google-ads-approved-recommendations.csv`, buildCsv(rows));
+    downloadFile(`myst-google-ads-approved-recommendations.csv`, buildCsv(rows));
   }, [props.recommendations]);
 
   return (

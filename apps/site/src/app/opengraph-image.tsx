@@ -22,10 +22,10 @@ export default function OpenGraphImage() {
         <div style={{ display: "flex", justifyContent: "space-between", gap: 24 }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 860 }}>
             <div style={{ fontSize: 56, fontWeight: 800, letterSpacing: -1.5, lineHeight: 1.05 }}>
-              Stonegate Junk Removal
+              Myst Pressure Washing
             </div>
             <div style={{ fontSize: 28, fontWeight: 500, opacity: 0.92, lineHeight: 1.25 }}>
-              Fast, reliable hauling across North Metro Atlanta.
+              Pressure washing and soft washing across North Metro Atlanta.
             </div>
           </div>
           <div
@@ -40,15 +40,15 @@ export default function OpenGraphImage() {
               justifyContent: "center"
             }}
           >
-            <div style={{ fontSize: 72, fontWeight: 900, letterSpacing: -4 }}>S</div>
+            <div style={{ fontSize: 72, fontWeight: 900, letterSpacing: -4 }}>M</div>
           </div>
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: 24 }}>
           <div style={{ fontSize: 22, fontWeight: 600, opacity: 0.9 }}>
-            Book online • Text us photos • Same-week openings
+            Request an estimate • Text us photos • Same-week openings
           </div>
-          <div style={{ fontSize: 22, fontWeight: 700, opacity: 0.9 }}>stonegatejunkremoval.com</div>
+          <div style={{ fontSize: 22, fontWeight: 700, opacity: 0.9 }}>mystpressurewashing.com</div>
         </div>
       </div>
     ),

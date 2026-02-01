@@ -24,8 +24,8 @@ test.describe("Lead Intake Journey", () => {
       const formAnchor = page.locator("#schedule-estimate");
       await formAnchor.scrollIntoViewIfNeeded();
 
-      await page.getByLabel("Furniture Removal").check();
-      await page.getByLabel("Yard Waste & Debris").check();
+      await page.getByLabel("Whole home soft-wash").check();
+      await page.getByLabel("Driveway / concrete cleaning").check();
 
       await page.getByLabel("Service address").fill("123 Lead Intake Lane");
       await page.getByLabel("City").fill("Atlanta");
@@ -52,7 +52,7 @@ test.describe("Lead Intake Journey", () => {
     await test.step("Verify DB + outbox", async () => {
       await drainOutbox(10);
       const record = await waitFor(() => findLeadByEmail(email), { description: "lead in database" });
-      expect(record.services).toEqual(expect.arrayContaining(["furniture", "yard-waste"]));
+      expect(record.services).toEqual(expect.arrayContaining(["house-wash", "driveway"]));
       expect(record.appointmentId).toBeTruthy();
 
       const events = await getOutboxEventsByLeadId(record.leadId);
@@ -69,7 +69,7 @@ test.describe("Lead Intake Journey", () => {
       const confirmationSms = await waitForTwilioMessage(
         (message) => message.to === phoneE164 && message.body.toLowerCase().includes("estimate")
       );
-      expect(confirmationSms.body).toContain("Stonegate");
+      expect(confirmationSms.body).toContain("Myst");
 
       // No-op: rely on unique email/phone per test instead of clearing shared inboxes.
     });

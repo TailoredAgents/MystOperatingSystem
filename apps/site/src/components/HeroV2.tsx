@@ -13,6 +13,16 @@ declare global {
 
 type HeroCtaType = "schedule" | "call" | "text";
 
+function normalizePhoneE164(value: string): string {
+  const trimmed = value.trim();
+  if (!trimmed) return "+10000000000";
+  if (trimmed.startsWith("+")) return trimmed;
+  const digits = trimmed.replace(/[^\d]/g, "");
+  if (digits.length === 11 && digits.startsWith("1")) return `+${digits}`;
+  if (digits.length === 10) return `+1${digits}`;
+  return trimmed;
+}
+
 function trackHeroEvent(type: HeroCtaType) {
   try {
     if (typeof window === "undefined") {
@@ -39,6 +49,8 @@ export function HeroV2({ className, variant = "lean" }: { className?: string; va
   const handleSchedule = useCallback(() => trackHeroEvent("schedule"), []);
   const handleCall = useCallback(() => trackHeroEvent("call"), []);
   const handleText = useCallback(() => trackHeroEvent("text"), []);
+  const phoneE164 = normalizePhoneE164(process.env["NEXT_PUBLIC_COMPANY_PHONE_E164"] ?? "");
+  const phoneDisplay = (process.env["NEXT_PUBLIC_COMPANY_PHONE_DISPLAY"] ?? "(000) 000-0000").trim();
 
   return (
     <section
@@ -56,13 +68,13 @@ export function HeroV2({ className, variant = "lean" }: { className?: string; va
         <div className="space-y-6">
           <div className="space-y-4">
             <span className="inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-sm font-semibold uppercase tracking-[0.14em] text-neutral-700">
-              Fast junk removal
+              Pressure washing pros
             </span>
             <h1 className="font-display text-3xl tracking-tight text-primary-900 sm:text-5xl md:text-6xl">
-              Junk removal that clears clutter fast and responsibly
+              Pressure washing that restores curb appeal fast and safely
             </h1>
             <p className="max-w-xl text-base text-neutral-600 sm:text-lg">
-              On-site estimate in under 24 hours. Licensed & insured. Serving Roswell, Alpharetta, Milton & nearby.
+              Quick estimates. Licensed &amp; insured. Serving Roswell, Alpharetta, Milton &amp; nearby.
             </p>
           </div>
 
@@ -82,7 +94,7 @@ export function HeroV2({ className, variant = "lean" }: { className?: string; va
               className="w-full justify-center border border-neutral-300/70 text-primary-800 sm:w-auto"
               onClick={handleCall}
             >
-              <a href="tel:+14047772631">Call (404) 777-2631</a>
+              <a href={`tel:${phoneE164}`}>{phoneDisplay ? `Call ${phoneDisplay}` : "Call"}</a>
             </Button>
             {isLean ? null : (
               <Button
@@ -92,17 +104,17 @@ export function HeroV2({ className, variant = "lean" }: { className?: string; va
                 className="w-full justify-center border border-neutral-300/70 text-primary-800 sm:w-auto"
                 onClick={handleText}
               >
-                <a href="sms:+14047772631">Text Us</a>
+                <a href={`sms:${phoneE164}`}>Text Us</a>
               </Button>
             )}
           </div>
 
           {isLean ? null : (
             <div className="flex flex-wrap gap-3">
-              <Badge tone="highlight">4.9 avg (1,247 reviews)</Badge>
+              <Badge tone="highlight">Local 5-star service</Badge>
               <Badge tone="default">Licensed & Insured</Badge>
-              <Badge tone="neutral">Make-It-Right Guarantee</Badge>
-              <Badge tone="default">On-Site in &lt; 24 hrs</Badge>
+              <Badge tone="neutral">Surface-safe methods</Badge>
+              <Badge tone="default">Same-week availability</Badge>
             </div>
           )}
         </div>
@@ -113,20 +125,20 @@ export function HeroV2({ className, variant = "lean" }: { className?: string; va
               <div className="space-y-4">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent-700">
-                    Why homeowners choose Stonegate
+                    Why homeowners choose Myst
                   </p>
                   <h2 className="mt-2 text-xl font-semibold text-primary-900">
-                    Trusted crews. Spotless finishes. Guaranteed.
+                    Trusted crews. Spotless finishes. Every time.
                   </h2>
                 </div>
                 <ul className="space-y-2 text-sm text-neutral-600">
-                  <li>- Fast, careful hauling with licensed and insured crews.</li>
-                  <li>- Responsible disposal and recycling whenever possible.</li>
-                  <li>- Make-It-Right Guarantee: we fix issues within 48 hours.</li>
+                  <li>- Soft-wash safe cleaning for siding, brick, and trim.</li>
+                  <li>- Surface-appropriate pressure to protect your property.</li>
+                  <li>- Clear communication and on-time service windows.</li>
                 </ul>
                 <div className="rounded-lg bg-neutral-50 p-4 text-sm text-neutral-600">
-                  <p className="font-semibold text-neutral-700">&ldquo;Their crew was on time, communicative, and left everything spotless.&rdquo;</p>
-                  <p className="mt-2 text-xs uppercase tracking-[0.18em] text-neutral-500">Brianna S. - Woodstock</p>
+                  <p className="font-semibold text-neutral-700">&ldquo;Our driveway looks brand new again. Easy scheduling and great communication.&rdquo;</p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.18em] text-neutral-500">Local customer - Woodstock</p>
                 </div>
               </div>
             </div>

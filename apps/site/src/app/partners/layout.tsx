@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Stonegate Partner Portal",
+  title: "Myst Partner Portal",
   robots: { index: false, follow: false }
 };
 
@@ -11,7 +11,7 @@ export default function PartnersLayout({ children }: { children: React.ReactNode
       <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3">
           <Link href="/partners" className="text-sm font-semibold text-slate-900">
-            Stonegate Partner Portal
+            Myst Partner Portal
           </Link>
           <nav className="flex flex-wrap items-center gap-2 text-xs">
             <Link href="/partners/book" className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-slate-700 hover:border-primary-300 hover:text-primary-700">

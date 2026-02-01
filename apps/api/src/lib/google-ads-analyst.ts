@@ -87,42 +87,41 @@ const OUT_OF_AREA_STATES = [
 ];
 
 const NEGATIVE_DO_NOT_BLOCK_PHRASES = [
-  "junk removal",
-  "junk pickup",
-  "haul away",
-  "haul-away",
-  "trash removal",
-  "bulk pickup",
-  "bulk trash",
-  "estate cleanout",
-  "estate clean out",
-  "garage cleanout",
-  "garage clean out",
-  "appliance removal",
-  "mattress removal",
-  "furniture removal",
-  "yard waste removal",
-  "construction debris removal"
+  "pressure washing",
+  "power washing",
+  "soft wash",
+  "soft washing",
+  "house wash",
+  "house washing",
+  "driveway cleaning",
+  "roof cleaning",
+  "roof soft wash",
+  "gutter cleaning",
+  "deck cleaning",
+  "patio cleaning",
+  "concrete cleaning",
+  "surface cleaning",
+  "commercial pressure washing"
 ];
 
 const NEGATIVE_DO_NOT_BLOCK_TOKENS = [
-  "junk",
-  "removal",
-  "pickup",
-  "cleanout",
-  "clean-out",
-  "haul",
-  "away",
-  "mattress",
-  "box spring",
-  "appliance",
-  "furniture",
-  "couch",
-  "sofa",
-  "hot tub",
-  "debris",
-  "yard",
-  "brush"
+  "pressure",
+  "washing",
+  "wash",
+  "power",
+  "soft",
+  "softwash",
+  "soft wash",
+  "house",
+  "driveway",
+  "roof",
+  "gutter",
+  "deck",
+  "patio",
+  "concrete",
+  "surface",
+  "cleaning",
+  "commercial"
 ];
 
 function inferNegativeMatchType(term: string, tier: NegativeTier): NegativeMatchType {
@@ -747,7 +746,7 @@ export async function runGoogleAdsAnalystReport(input: {
     }));
 
   const systemPrompt = [
-    "You are a Google Ads marketing analyst for a local junk removal company (Stonegate Junk Removal).",
+    "You are a Google Ads marketing analyst for a local pressure washing company (Myst Pressure Washing).",
     "Your job: read the last 7 days of ads data, then produce a short, actionable checklist to improve results.",
     "",
     "Business context:",

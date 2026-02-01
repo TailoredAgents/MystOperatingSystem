@@ -492,7 +492,7 @@ async function recordLeadFromFacebook(input: {
         .trim();
     const firstName = firstFieldValue(fieldMap, ["first_name"]);
     const lastName = firstFieldValue(fieldMap, ["last_name"]);
-    const resolvedName = normalizeName(fullName || "Stonegate Customer");
+    const resolvedName = normalizeName(fullName || "Myst Customer");
     const resolvedFirstName = firstName || resolvedName.firstName;
     const resolvedLastName = lastName || resolvedName.lastName;
 

@@ -25,7 +25,7 @@ interface Message {
 
 const SUGGESTIONS = [
   "What services do you offer?",
-  "What does a half-trailer usually cost?",
+  "How do you price pressure washing?",
   "Can you book me for an estimate?"
 ];
 const RESPONSE_DELAY_MIN_MS = 10_000;
@@ -34,11 +34,11 @@ const RESPONSE_DELAY_MAX_MS = 30_000;
 function fallbackResponse(message: string): string {
   const m = message.toLowerCase();
   if (m.includes("price") || m.includes("cost") || m.includes("quote") || m.includes("estimate"))
-    return "We price by load size. Single item pickup is $100, minimum pickup (2â€“4 items) is $150, half load $300, 3/4 load $450, and a full load $600. Weâ€™ll confirm the exact price on-site.";
-  if (m.includes("mattress") || m.includes("paint") || m.includes("tire"))
-    return "Base pricing is by volume. Some items have dump pass-through fees (for example, mattresses/box springs are +$40 each).";
-  if (m.includes("insurance") || m.includes("licensed")) return "Yes - Stonegate is licensed and insured. COIs available on request.";
-  return "Happy to help - ask about pricing ranges, what we haul, or say \"book me\" to schedule an estimate.";
+    return "Pricing depends on the surfaces, square footage, and how much buildup/staining is present. Share a few photos and we’ll provide a quick estimate and confirm the exact scope before we start.";
+  if (m.includes("roof"))
+    return "Roof cleaning is done with low-pressure soft-wash methods (not high pressure). Share a photo and we’ll recommend the safest approach.";
+  if (m.includes("insurance") || m.includes("licensed")) return "Yes - Myst is licensed and insured. COIs available on request.";
+  return "Happy to help — ask about house wash, driveway cleaning, roof soft-wash, or say \"book me\" to schedule an estimate.";
 }
 
 export function ChatBot() {
@@ -52,7 +52,7 @@ export function ChatBot() {
   const [bookingInFlight, setBookingInFlight] = React.useState(false);
   const [isTyping, setIsTyping] = React.useState(false);
   const [messages, setMessages] = React.useState<Message[]>([
-    { id: "initial", sender: "bot", text: "Hi! I'm Stonegate Assist. Ask about services, pricing ranges, or how we work." }
+    { id: "initial", sender: "bot", text: "Hi! I’m Myst Assist. Ask about services, pricing, or scheduling an estimate." }
   ]);
   const endRef = React.useRef<HTMLDivElement>(null);
   const pendingRepliesRef = React.useRef(0);
@@ -161,7 +161,7 @@ export function ChatBot() {
         <div className="w-full max-w-sm rounded-xl border border-neutral-300/70 bg-white shadow-xl shadow-primary-900/10 sm:max-w-md">
           <div className="flex items-center justify-between border-b border-neutral-200 px-4 py-3">
             <div>
-              <p className="font-semibold text-primary-800">Stonegate Assist</p>
+              <p className="font-semibold text-primary-800">Myst Assist</p>
               <p className="text-xs text-neutral-500">Ask anything about our services</p>
             </div>
             <button
@@ -209,7 +209,7 @@ export function ChatBot() {
              {isTyping ? (
                <div className="flex justify-start">
                  <div className="max-w-[75%] rounded-xl bg-neutral-100 px-3 py-2 text-neutral-500">
-                   <span className="sr-only">Stonegate Assist is typing</span>
+                   <span className="sr-only">Myst Assist is typing</span>
                    <span className="flex items-center gap-1" aria-hidden="true">
                      <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-neutral-400" style={{ animationDelay: "0ms" }} />
                      <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-neutral-400" style={{ animationDelay: "150ms" }} />
@@ -255,7 +255,7 @@ export function ChatBot() {
         onClick={() => setIsOpen((prev) => !prev)}
         className="shadow-lg shadow-primary-900/20"
       >
-        {isOpen ? "Hide Assistant" : "Ask Stonegate"}
+        {isOpen ? "Hide Assistant" : "Ask Myst"}
       </Button>
     </div>
   );

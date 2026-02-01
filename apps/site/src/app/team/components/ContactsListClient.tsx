@@ -729,7 +729,7 @@ function ContactCard({ contact, teamMembers }: ContactCardProps) {
                   return;
                 }
                 const label = contactState.phone ?? "this contact";
-                if (!window.confirm(`Call ${contactState.name} (${label}) from the Stonegate number?`)) {
+                if (!window.confirm(`Call ${contactState.name} (${label}) from the Myst number?`)) {
                   event.preventDefault();
                 }
               }}

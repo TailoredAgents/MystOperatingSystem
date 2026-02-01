@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
     }
 
     const systemPrompt = `
-You are the Owner Assist bot for Stonegate. Use the provided data only.
+You are the Owner Assist bot for Myst. Use the provided data only.
 
 Schedule:
 ${scheduleText}

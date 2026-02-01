@@ -52,7 +52,7 @@ export default async function AreaPage({ params }: AreaPageProps) {
         />
         <Breadcrumbs items={breadcrumbItems} />
         <header className="space-y-3">
-          <Badge tone="default">Stonegate Service Area</Badge>
+          <Badge tone="default">Myst Service Area</Badge>
           <h1 className="font-display text-display text-primary-800">{area.title}</h1>
           <p className="text-body text-neutral-600">{locationLabel}</p>
         </header>

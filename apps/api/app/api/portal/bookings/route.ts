@@ -373,8 +373,8 @@ export async function POST(request: NextRequest): Promise<Response> {
     })();
 
     const partnerName = partnerUser?.name?.trim().length ? partnerUser.name.trim() : "there";
-    const smsBody = `Stonegate: booking confirmed for ${when} at ${address}. Reply here if anything changes.`;
-    const emailSubject = "Stonegate Partner booking confirmed";
+    const smsBody = `Myst: booking confirmed for ${when} at ${address}. Reply here if anything changes.`;
+    const emailSubject = "Myst Partner booking confirmed";
     const emailBody = [
       `Hi ${partnerName},`,
       "",

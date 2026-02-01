@@ -142,8 +142,8 @@ function buildRubricPrompt(rubric: CallCoachingRubric): { rubricLabel: string; r
   return {
     rubricLabel: "Inbound lead call (hot lead) coaching rubric",
     rubricCriteria: [
-      "Score the salesperson's performance for an inbound lead calling for junk removal / services.",
-      "Focus on: fast qualification (items, access, timeframe, ZIP), clear pricing/anchoring, booking push, handling objections, and setting the next step.",
+      "Score the salesperson's performance for an inbound lead calling for pressure washing / exterior cleaning services.",
+      "Focus on: fast qualification (surfaces, access, timeframe, ZIP), clear pricing/anchoring, booking push, handling objections, and setting the next step.",
       "Do NOT judge based on whether the customer booked; judge the rep's process.",
       "A perfect call ends with a scheduled appointment or a clear follow-up time with a reason.",
       "",

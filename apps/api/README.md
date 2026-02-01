@@ -1,6 +1,6 @@
-# Stonegate API App
+# Myst API App
 
-This is the Next.js API application that powers StonegateOS. It exposes REST-style endpoints under `/api` and hosts business logic for leads, appointments, quotes, notifications, payments, and calendar sync.
+This is the Next.js API application that powers MystOperatingSystem. It exposes REST-style endpoints under `/api` and hosts business logic for leads, appointments, quotes, notifications, payments, and calendar sync.
 
 ## Key Responsibilities
 - Lead intake and appointment scheduling (`/api/web/lead-intake`, `/api/appointments`, `/api/web/appointments/...`).

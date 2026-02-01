@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { calculateQuoteBreakdown } from "@myst-os/pricing/src/engine/calculate";
+import type { ServiceCategory } from "@myst-os/pricing/src/types";
 import { getDb, crmPipeline, instantQuotes, leads, outboxEvents, properties } from "@/db";
 import { getCompanyProfilePolicy, isGeorgiaPostalCode, normalizePostalCode } from "@/lib/policy";
 import { desc, eq } from "drizzle-orm";
@@ -61,13 +63,12 @@ const RequestSchema = z.object({
     types: z
       .array(
         z.enum([
-          "furniture",
-          "appliances",
-          "general_junk",
-          "yard_waste",
-          "construction_debris",
-          "hot_tub_playset",
-          "business_commercial"
+          "house-wash",
+          "driveway",
+          "roof",
+          "deck",
+          "gutter",
+          "commercial"
         ])
       )
       .optional()
@@ -158,6 +159,110 @@ const UNIT_PRICE = 150;
 type JobInput = z.infer<typeof RequestSchema>["job"];
 type QuoteResult = z.infer<typeof QuoteResultSchema>;
 
+type SizeBucket = "small" | "medium" | "large" | "xl" | "unknown";
+
+function roundToStep(value: number, step: number): number {
+  if (!Number.isFinite(value)) return 0;
+  if (!Number.isFinite(step) || step <= 0) return Math.round(value);
+  return Math.round(value / step) * step;
+}
+
+function clamp(value: number, min: number, max: number): number {
+  if (!Number.isFinite(value)) return min;
+  return Math.max(min, Math.min(max, value));
+}
+
+function resolveSizeBucket(perceivedSize: string): SizeBucket {
+  switch ((perceivedSize ?? "").toLowerCase()) {
+    case "single_item":
+      return "small";
+    case "min_pickup":
+      return "medium";
+    case "half_trailer":
+      return "large";
+    case "three_quarter_trailer":
+    case "big_cleanout":
+      return "xl";
+    default:
+      return "unknown";
+  }
+}
+
+function approximateSurfaceAreaSqFt(perceivedSize: JobInput["perceivedSize"]): number | null {
+  const bucket = resolveSizeBucket(perceivedSize ?? "unknown");
+  switch (bucket) {
+    case "small":
+      return 800;
+    case "medium":
+      return 1400;
+    case "large":
+      return 2200;
+    case "xl":
+      return 3200;
+    default:
+      return null;
+  }
+}
+
+function estimateDurationMinutes(job: JobInput): number {
+  const bucket = resolveSizeBucket(job.perceivedSize ?? "unknown");
+  const sizeFactor =
+    bucket === "small" ? 0.8 : bucket === "medium" ? 1.0 : bucket === "large" ? 1.25 : bucket === "xl" ? 1.6 : 1.2;
+
+  const serviceBaseMinutes: Record<string, number> = {
+    "house-wash": 120,
+    driveway: 90,
+    roof: 120,
+    deck: 90,
+    gutter: 60,
+    commercial: 180
+  };
+
+  const types = (job.types ?? []).length ? job.types : ["house-wash"];
+  const raw = types.reduce((sum, service) => sum + (serviceBaseMinutes[service] ?? 90), 0);
+  return clamp(Math.round(raw * sizeFactor), 60, 8 * 60);
+}
+
+function computeInstantWashQuote(job: JobInput): QuoteResult & { durationMinutes: number } {
+  const selectedServices: ServiceCategory[] = (job.types?.length ? job.types : ["house-wash"]) as ServiceCategory[];
+  const surfaceArea = approximateSurfaceAreaSqFt(job.perceivedSize) ?? undefined;
+
+  const breakdown = calculateQuoteBreakdown({
+    zoneId: "zone-core",
+    surfaceArea,
+    selectedServices,
+    applyBundles: true
+  });
+
+  const baseTotal = Number.isFinite(breakdown.total) ? breakdown.total : 0;
+  const priceLow = Math.max(100, roundToStep(baseTotal * 0.9, 5));
+  const priceHigh = Math.max(priceLow, roundToStep(baseTotal * 1.15, 5));
+
+  const bucket = resolveSizeBucket(job.perceivedSize ?? "unknown");
+  const tier = bucket === "small" ? "Small" : bucket === "medium" ? "Medium" : bucket === "large" ? "Large" : bucket === "xl" ? "Extra Large" : "Estimate Needed";
+
+  const needsInPersonEstimate =
+    (job.perceivedSize ?? "") === "not_sure" ||
+    selectedServices.includes("commercial");
+
+  const reasonSummary = needsInPersonEstimate
+    ? "Estimate depends on surface condition and access. Share photos for a faster, tighter range."
+    : "Estimate is based on typical surface sizes and selected services. Final price is confirmed after we confirm scope and access.";
+
+  const durationMinutes = estimateDurationMinutes(job);
+  const loadFractionEstimate = surfaceArea ? Math.round((surfaceArea / 2000) * 100) / 100 : 0;
+
+  return {
+    loadFractionEstimate,
+    priceLow,
+    priceHigh,
+    displayTierLabel: tier,
+    reasonSummary,
+    needsInPersonEstimate,
+    durationMinutes
+  };
+}
+
 type QuoteBounds = {
   minUnits: number;
   maxUnits: number;
@@ -224,7 +329,7 @@ function getQuoteBounds(job: JobInput): QuoteBounds {
       break;
   }
 
-  const types = new Set(job.types);
+  const types = new Set<string>(job.types);
   if (types.has("hot_tub_playset")) {
     minUnits = Math.max(minUnits, 3);
     maxUnits = Math.max(maxUnits, 6);
@@ -451,23 +556,11 @@ export async function POST(request: NextRequest) {
           message: "Thanks for reaching out. We currently serve Georgia only."
         }, requestOrigin);
       }
-      const bounds = getQuoteBounds(body.job);
-    const fallback = getFallbackQuote(body.job, bounds);
-    const aiResult = await getQuoteFromAi(body, bounds).catch((err) => {
-      console.error("[junk-quote] ai_failed", err instanceof Error ? err.message : err);
-      return fallback;
-    });
-    const aiValidated = QuoteResultSchema.safeParse(aiResult);
-    const baseCandidate = aiValidated.success ? aiValidated.data : fallback;
-    if (!aiValidated.success) {
-      console.error("[junk-quote] ai_invalid_response", aiResult);
-    }
 
-    const base = applyBoundsToQuote(baseCandidate, body.job, bounds);
+    const baseWithDuration = computeInstantWashQuote(body.job);
+    const { durationMinutes: _durationMinutes, ...base } = baseWithDuration;
 
-    const storedAiResult = {
-      ...base
-    };
+    const storedAiResult = baseWithDuration;
 
     const db = getDb();
 
@@ -883,8 +976,8 @@ async function getQuoteFromAi(body: z.infer<typeof RequestSchema>, bounds: Quote
 }
 
 const SYSTEM_PROMPT = `
-You are the quoting assistant for Stonegate Junk Removal in Woodstock, Georgia.
-Stonegate uses one large 7x16x4 dump trailer. Pricing is based on either a single-item pickup or trailer volume.
+You are the quoting assistant for Myst Pressure Washing in Woodstock, Georgia.
+Myst pricing depends on surfaces, square footage, and the amount of buildup/staining. Avoid firm totals without photos or an on-site confirmation.
 Do NOT add charges for weight, stairs, distance, time, urgency, heavy/bulky items, or difficulty.
 
 Base prices:

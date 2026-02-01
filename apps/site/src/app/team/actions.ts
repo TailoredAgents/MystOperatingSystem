@@ -427,7 +427,7 @@ export async function createQuoteAction(formData: FormData) {
   }
 
   if (isCanvass && quoteId && typeof contactId === "string") {
-    const repName = jar.get("myst-team-actor-label")?.value?.trim() || "Stonegate";
+    const repName = jar.get("myst-team-actor-label")?.value?.trim() || "Myst";
 
     let firstName = "there";
     try {
@@ -443,7 +443,7 @@ export async function createQuoteAction(formData: FormData) {
 
     const total = typeof data?.breakdown?.total === "number" ? data.breakdown.total : null;
     const totalText = total !== null ? `$${total.toFixed(0)}` : "your total";
-    const draftBody = `Hey ${firstName}, this is ${repName} with Stonegate Junk Removal. Your quote total is ${totalText}. What day works best for pickup?`;
+    const draftBody = `Hey ${firstName}, this is ${repName} with Myst Pressure Washing. Your quote total is ${totalText}. What day works best for service?`;
 
     try {
       const ensured = await callAdminApi("/api/admin/inbox/threads/ensure", {

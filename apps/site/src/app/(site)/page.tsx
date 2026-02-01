@@ -8,10 +8,11 @@ import { HeroV2 } from "@/components/HeroV2";
 import { LeadForm } from "@/components/LeadForm";
 import { MdxContent } from "@/components/MdxContent";
 import { StickyCtaBar } from "@/components/StickyCtaBar";
+import { getPublicCompanyProfile } from "@/lib/company";
 import { createPageMetadata } from "@/lib/metadata";
 import { DEFAULT_LEAD_SERVICE_OPTIONS } from "@/lib/lead-services";
 
-// Junk removal hero/gallery assets can be added under /images/services
+// Pressure washing hero/gallery assets can be added under /images/services
 
 type ResultTile = {
   title: string;
@@ -22,44 +23,44 @@ type ResultTile = {
 
 const resultTiles: ResultTile[] = [
   {
-    title: "Garage Cleanout",
-    description: "Boxes, old furniture, and junk cleared in one scheduled visit.",
-    afterImage: "/images/gallery/showcase/garage_after_aligned_16x9_1080p.jpg"
+    title: "Whole Home Soft-Wash",
+    description: "Refresh siding, brick, and trim with surface-safe soft-wash methods.",
+    afterImage: "/images/services/wash-house.jpg"
   },
   {
-    title: "Appliance & Furniture Pickup",
-    description: "Refrigerators, washers, and sofas hauled without scuffs or mess.",
-    afterImage: "/images/services/Junkremoval.jpg"
+    title: "Driveway Cleaning",
+    description: "Lift grime and stains from concrete and pavers for instant curb appeal.",
+    afterImage: "/images/services/wash-driveway.jpg"
   },
   {
-    title: "Yard & Debris Removal",
-    description: "Storm brush and light construction debris responsibly disposed.",
-    afterImage: "/images/services/Yarddebris.jpg"
+    title: "Deck & Patio Restore",
+    description: "Brighten patios, porches, and decks with the right pressure for the material.",
+    afterImage: "/images/services/wash-deck.jpg"
   }
 ];
 
 const testimonials = [
   {
-    quote: "They cleared our garage in under two hours and swept up after. Pricing matched the estimate.",
-    name: "Brianna S.",
+    quote: "Our driveway looks brand new again. Easy scheduling and great communication.",
+    name: "Local customer",
     location: "Woodstock"
   },
   {
-    quote: "On-time, professional, and careful through the house with a large sofa and fridge.",
-    name: "Marcus T.",
+    quote: "Professional crew, careful around landscaping, and the house wash made a huge difference.",
+    name: "Local customer",
     location: "Canton"
   },
   {
-    quote: "Text updates, polite crew, and quick yard debris removal. Couldn't be easier.",
-    name: "Alyssa K.",
+    quote: "Great results on our patio and walkways. Clear estimate and on-time arrival.",
+    name: "Local customer",
     location: "Roswell"
   }
 ];
 
 const stats = [
-  { label: "Projects", value: "1,200+", secondary: "Completed across North Metro Atlanta" },
-  { label: "Estimator Dispatch", value: "< 24 hrs", secondary: "Average onsite scheduling time" },
-  { label: "Guarantee", value: "Make-It-Right", secondary: "We fix issues within 48 hours" }
+  { label: "Service", value: "Surface-safe", secondary: "Soft-wash and pressure washing options" },
+  { label: "Scheduling", value: "Flexible", secondary: "Weekday and weekend windows" },
+  { label: "Crew", value: "Insured", secondary: "Professional, careful, and respectful" }
 ];
 
 export const metadata = createPageMetadata("home");
@@ -70,6 +71,7 @@ export default function HomePage() {
     notFound();
   }
 
+  const company = getPublicCompanyProfile();
   const services = [...allServices].sort((a, b) => a.title.localeCompare(b.title));
   const areas = allAreas.filter((area) => area.slug !== "index").sort((a, b) => a.title.localeCompare(b.title));
   const serviceContentMap = new Map(services.map((service) => [service.slug, service]));
@@ -80,14 +82,7 @@ export default function HomePage() {
       description: content?.short ?? option.description
     };
   });
-  const leadFormServices = [
-    ...leadServiceOptions,
-    {
-      slug: "commercial-services",
-      title: "Commercial Services",
-      description: "Storefronts, office parks, HOA amenities, and shared spaces"
-    }
-  ];
+  const leadFormServices = leadServiceOptions;
 
   return (
     <div className="relative flex flex-col gap-16 pb-24">
@@ -102,15 +97,15 @@ export default function HomePage() {
               className="group relative overflow-hidden rounded-3xl border border-neutral-200 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-float"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
-                <Image
-                  src={tile.afterImage}
-                  alt={`${tile.title} by Stonegate Junk Removal`}
-                  fill
-                  className="object-cover transition duration-700 group-hover:scale-105"
-                  sizes="(min-width: 1280px) 400px, (min-width: 768px) 50vw, 100vw"
-                  priority
-                  quality={60}
-                />
+                  <Image
+                    src={tile.afterImage}
+                    alt={`${tile.title} by ${company.name}`}
+                    fill
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                    sizes="(min-width: 1280px) 400px, (min-width: 768px) 50vw, 100vw"
+                    priority
+                    quality={60}
+                  />
                 {tile.beforeImage ? (
                   <>
                     <div
@@ -119,7 +114,7 @@ export default function HomePage() {
                     >
                       <Image
                         src={tile.beforeImage}
-                        alt={`${tile.title} before Stonegate service`}
+                        alt={`${tile.title} before ${company.name} service`}
                         fill
                         className="object-cover"
                         sizes="(min-width: 1280px) 400px, (min-width: 768px) 50vw, 100vw"
@@ -173,8 +168,10 @@ export default function HomePage() {
       <Section className="mt-4">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="font-display text-headline text-primary-800">Services for every pickup need</h2>
-            <p className="mt-3 max-w-2xl text-body text-neutral-600">From rubbish removal to full cleanouts, Stonegate builds each visit around your space and schedule with clear, upfront estimates.</p>
+            <h2 className="font-display text-headline text-primary-800">Exterior services that fit your property</h2>
+            <p className="mt-3 max-w-2xl text-body text-neutral-600">
+              From soft-wash house cleaning to driveway and patio restoration, we build each visit around your surfaces and your schedule with clear, upfront estimates.
+            </p>
           </div>
           <Button variant="secondary" asChild>
             <Link href="/services">Explore Services</Link>
@@ -182,7 +179,6 @@ export default function HomePage() {
         </div>
         <div className="grid gap-6 md:grid-cols-3">
           {leadFormServices.map((service) => {
-            const isCommercial = service.slug === "commercial-services";
             return (
               <Card key={service.slug} className="flex h-full flex-col gap-4">
               <div>
@@ -192,9 +188,7 @@ export default function HomePage() {
                   ) : null}
               </div>
               <Button variant="ghost" asChild className="mt-auto w-fit px-0 text-accent-700 hover:text-accent-800">
-                  <Link href={isCommercial ? "/contact?type=commercial" : `/services/${service.slug}`}>
-                    {isCommercial ? "Request commercial quote ->" : "Learn more ->"}
-                  </Link>
+                  <Link href={`/services/${service.slug}`}>Learn more {"->"}</Link>
               </Button>
               </Card>
             );
@@ -202,12 +196,12 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Removed "Why Stonegate?" section per request */}
+      {/* Removed "Why Us?" section per request */}
 
       <Section>
         <div className="grid gap-6">
           <div>
-            <h2 className="font-display text-headline text-primary-800">See the Stonegate difference</h2>
+            <h2 className="font-display text-headline text-primary-800">See the difference</h2>
             <p className="mt-3 text-body text-neutral-600">
               Slide to compare a real before-and-after result.
             </p>
@@ -215,7 +209,7 @@ export default function HomePage() {
           <BeforeAfterSlider
             beforeImage="/images/gallery/showcase/garage_before_aligned_16x9_1080p.jpg"
             afterImage="/images/gallery/showcase/garage_after_aligned_16x9_1080p.jpg"
-            alt="Garage cleanout transformation"
+            alt="Before and after exterior cleaning result"
           />
         </div>
       </Section>
@@ -223,9 +217,9 @@ export default function HomePage() {
       <Section>
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="font-display text-headline text-primary-800">Homeowners and businesses rave about Stonegate</h2>
+            <h2 className="font-display text-headline text-primary-800">Homeowners and businesses love our results</h2>
             <p className="mt-2 max-w-2xl text-body text-neutral-600">
-              Verified five-star reviews and a make-it-right guarantee on every pickup.
+              Clear communication, careful work, and clean finishes on every visit.
             </p>
           </div>
           <Button variant="secondary" asChild>

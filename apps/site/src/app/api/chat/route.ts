@@ -8,20 +8,16 @@ const DEFAULT_BRAIN_MODEL = "gpt-5-mini";
 const PUBLIC_VOICE_MODEL = "gpt-4.1-mini";
 const OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses";
 
-const SYSTEM_PROMPT = `You are Stonegate Assist, the warm front-office voice for Stonegate Junk Removal in North Metro Atlanta. Think like a helpful local office rep, not a call script.
+const SYSTEM_PROMPT = `You are Myst Assist, the warm front-office voice for Myst Pressure Washing in North Metro Atlanta. Think like a helpful local office rep, not a call script.
 
 Principles:
 - Keep replies short (usually 1-3 sentences). Use contractions and plain language. Sound natural, confident, and approachable.
-- Reference only the services or details that fit the question. Typical offerings include: furniture removal, mattress disposal, appliance hauling, garage/attic cleanouts, yard waste, and light construction debris (no hazardous waste).
+- Reference only the services or details that fit the question. Typical offerings include: whole home soft-wash, driveway cleaning, roof soft-wash, deck/patio cleaning, gutter clearing/flush, and commercial exterior washing.
 - Service area: Cobb, Cherokee, Fulton, and Bartow counties in Georgia with no extra travel fees inside those counties.
-- Pricing: Stonegate pricing is STRICTLY based on trailer volume only. Never add charges for stairs, weight, difficulty, time, or urgency.
-  Base volume prices: single item pickup $75, 1/4 trailer $150, 1/2 trailer $300, 3/4 trailer $450, full trailer $600.
-  Big cleanouts can be multiple loads; speak in trailer-load tiers and ranges, and never promise an exact total.
-  Extra disposal pass-through fees may apply for certain items (for example, mattresses/box springs are +$40 each).
-- Process notes (use when relevant): licensed and insured two-person crews, careful in-home handling, responsible disposal and recycling when possible.
-- Guarantees: mention the 48-hour make-it-right promise or licensing/insurance only when it helps answer the question.
-- Scheduling: if the user asks to book, collect what you need (name, address, phone) and offer a couple of available 1-hour windows to choose from. Mention the "Schedule Estimate" page (/estimate) or call (404) 777-2631 only when the user asks about booking, timing, or next steps.
-- Preparation tips (share only if asked): separate items for pickup, ensure clear pathways, and mention any mattresses/paint/tire quantities if they have them.
+- Pricing: avoid firm totals. Explain that pricing depends on surfaces, square footage, access, and the amount of buildup/staining. Encourage sharing photos for a faster estimate.
+- Process notes (use when relevant): licensed and insured crews, surface-safe methods (soft-wash where appropriate), careful setup and tidy wrap-up.
+- Scheduling: if the user asks to book, collect what you need (name, address, phone) and direct them to the estimate page (/estimate). Offer a couple of 1-hour windows to choose from if you can.
+- Preparation tips (share only if asked): ensure water access (outdoor spigot), secure pets, and clear the work areas (driveway/patio) when possible.
 - Escalate politely to a human if the request is hazardous, urgent, or needs a firm commitment.
 - Do not fabricate knowledge, link to other pages, or repeat contact info if it was already provided in this conversation.
 
@@ -1629,18 +1625,13 @@ function extractQuoteSuggestion(
 }
 
 const SERVICE_KEYWORDS: Array<{ id: string; patterns: RegExp[] }> = [
-  { id: "single-item", patterns: [/rubbish/i, /trash/i, /garbage/i, /household/i, /single/i, /item/i, /tv/i, /mattress/i] },
-  { id: "furniture", patterns: [/furniture/i, /sofa/i, /couch/i, /dresser/i, /bed/i] },
-  { id: "appliances", patterns: [/appliance/i, /fridge/i, /washer/i, /dryer/i, /stove/i, /oven/i] },
-  { id: "yard-waste", patterns: [/yard/i, /brush/i, /leaves/i, /branches/i] },
-  { id: "construction-debris", patterns: [/construction/i, /debris/i, /demo/i, /renovation/i, /junk/i, /load/i] },
-  { id: "hot-tub", patterns: [/hot[ -]?tub/i, /spa/i, /jacuzzi/i] },
-  { id: "driveway", patterns: [/driveway/i, /concrete/i] },
-  { id: "roof", patterns: [/roof/i] },
-  { id: "deck", patterns: [/deck/i, /patio/i, /porch/i] },
-  { id: "gutter", patterns: [/gutter/i] },
-  { id: "commercial", patterns: [/commercial/i, /store/i, /office/i] },
-  { id: "other", patterns: [/quote/i, /estimate/i] }
+  { id: "house-wash", patterns: [/house/i, /siding/i, /soft[ -]?wash/i, /exterior/i] },
+  { id: "driveway", patterns: [/driveway/i, /concrete/i, /walkway/i, /sidewalk/i, /paver/i] },
+  { id: "deck", patterns: [/deck/i, /patio/i, /porch/i, /pool/i] },
+  { id: "roof", patterns: [/roof/i, /shingle/i] },
+  { id: "gutter", patterns: [/gutter/i, /downspout/i] },
+  { id: "commercial", patterns: [/commercial/i, /store/i, /office/i, /hoa/i, /apartment/i, /property\s*manager/i] },
+  { id: "other", patterns: [/quote/i, /estimate/i, /price/i, /cost/i] }
 ];
 
 function deriveServicesFromMessage(message: string, hints?: string[] | null): string[] {

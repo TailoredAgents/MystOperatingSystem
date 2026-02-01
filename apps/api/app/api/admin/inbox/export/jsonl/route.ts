@@ -123,7 +123,7 @@ export async function GET(request: NextRequest): Promise<Response> {
   });
 
   const now = new Date();
-  const filename = `stonegate-conversations-${now.toISOString().slice(0, 10)}.jsonl`;
+  const filename = `myst-conversations-${now.toISOString().slice(0, 10)}.jsonl`;
 
   return new Response(stream, {
     headers: {

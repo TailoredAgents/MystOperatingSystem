@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Privacy Policy | Stonegate Junk Removal",
-  description: "How Stonegate Junk Removal collects, uses, and shares personal information."
+  title: "Privacy Policy | Myst Pressure Washing",
+  description: "How Myst Pressure Washing collects, uses, and shares personal information."
 };
 
 function formatDate(date: Date): string {
@@ -17,7 +17,7 @@ export default function PrivacyPolicyPage() {
 
       <div className="prose prose-neutral mt-10 max-w-none">
         <p>
-          This Privacy Policy explains how Stonegate Junk Removal (&quot;Stonegate&quot;, &quot;we&quot;, &quot;us&quot;)
+          This Privacy Policy explains how Myst Pressure Washing (&quot;Myst&quot;, &quot;we&quot;, &quot;us&quot;)
           collects, uses, and shares information when you visit our website, contact us, or submit a request for service.
         </p>
 
@@ -52,7 +52,7 @@ export default function PrivacyPolicyPage() {
         </p>
         <ul>
           <li>
-            <strong>Hosting and database</strong> (to operate StonegateOS and store records).
+            <strong>Hosting and database</strong> (to operate our systems and store records).
           </li>
           <li>
             <strong>Messaging providers</strong> (to send and receive SMS and notifications).
@@ -83,7 +83,7 @@ export default function PrivacyPolicyPage() {
         <h2>Contact</h2>
         <p>
           If you have questions about this policy, contact us at{" "}
-          <a href="mailto:austin@stonegatejunkremoval.com">austin@stonegatejunkremoval.com</a>.
+          <a href="mailto:hello@mystpressurewashing.com">hello@mystpressurewashing.com</a>.
         </p>
       </div>
     </div>

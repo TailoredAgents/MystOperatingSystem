@@ -45,7 +45,7 @@ function getPublicSiteUrlBlocker(): HealthFinding | null {
     title: "Public website URL not configured",
     detail: `Customer-facing links (quotes, partner portal, reschedules) require a valid HTTPS site URL. ${hint}.`,
     fix: [
-      "Set `SITE_URL=https://your-domain.com` (or `NEXT_PUBLIC_SITE_URL`) on Render for `stonegate-api` and `stonegate-outbox-worker`.",
+      "Set `SITE_URL=https://your-domain.com` (or `NEXT_PUBLIC_SITE_URL`) on Render for `myst-api` and `myst-outbox-worker`.",
       "Redeploy both services.",
       "Re-try the customer-facing action (send quote / invite partner)."
     ]
@@ -63,7 +63,7 @@ function getTwilioBlocker(): HealthFinding | null {
     title: "Twilio not configured",
     detail: `Outbound calls/SMS are disabled because these env vars are missing: ${missing.join(", ")}.`,
     fix: [
-      "Set the missing Twilio env vars on Render for `stonegate-api` and `stonegate-outbox-worker`.",
+      "Set the missing Twilio env vars on Render for `myst-api` and `myst-outbox-worker`.",
       "Redeploy both services.",
       "Re-try the call/SMS action."
     ]

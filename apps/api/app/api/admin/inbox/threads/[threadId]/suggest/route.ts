@@ -305,7 +305,7 @@ async function ensureAiParticipant(tx: Tx, threadId: string, now: Date) {
       and(
         eq(conversationParticipants.threadId, threadId),
         eq(conversationParticipants.participantType, "team"),
-        eq(conversationParticipants.displayName, "Stonegate Assist"),
+        eq(conversationParticipants.displayName, "Myst Assist"),
         sql`${conversationParticipants.teamMemberId} is null`
       )
     )
@@ -319,7 +319,7 @@ async function ensureAiParticipant(tx: Tx, threadId: string, now: Date) {
       threadId,
       participantType: "team",
       teamMemberId: null,
-      displayName: "Stonegate Assist",
+      displayName: "Myst Assist",
       createdAt: now
     })
     .returning({ id: conversationParticipants.id });
@@ -557,7 +557,7 @@ export async function POST(
   let plan: ReplyPlan | null = null;
   if (config.thinkModel) {
     const planSystemPrompt = `
-You are Stonegate Assist. Read the conversation and produce a short internal plan for the best next reply.
+You are Myst Assist. Read the conversation and produce a short internal plan for the best next reply.
 Do not write the customer message. Output ONLY JSON matching the schema.
 `.trim();
 
@@ -652,7 +652,7 @@ Do not write the customer message. Output ONLY JSON matching the schema.
         participantId,
         direction: "outbound",
         channel: replyChannel,
-        subject: replyChannel === "email" ? suggestion.subject ?? thread.subject ?? "Stonegate message" : null,
+        subject: replyChannel === "email" ? suggestion.subject ?? thread.subject ?? "Myst message" : null,
         body: suggestion.body,
         toAddress,
         deliveryStatus: "queued",

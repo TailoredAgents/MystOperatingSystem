@@ -42,13 +42,12 @@ type PerceivedSize =
   | "not_sure";
 type LeadFormVariant = "junk" | "brush";
 type JunkType =
-  | "furniture"
-  | "appliances"
-  | "general_junk"
-  | "yard_waste"
-  | "construction_debris"
-  | "hot_tub_playset"
-  | "business_commercial";
+  | "house-wash"
+  | "driveway"
+  | "roof"
+  | "deck"
+  | "gutter"
+  | "commercial";
 type BrushScope =
   | "light_brush"
   | "overgrowth"
@@ -61,21 +60,20 @@ type BrushDifficulty = "easy" | "moderate" | "hard" | "not_sure";
 type BrushAccess = "open" | "standard_gate" | "tight_gate" | "not_sure";
 
 const JUNK_OPTIONS: Array<{ id: JunkType; label: string }> = [
-  { id: "furniture", label: "Furniture" },
-  { id: "appliances", label: "Appliances" },
-  { id: "general_junk", label: "General household junk" },
-  { id: "yard_waste", label: "Yard waste / outdoor items" },
-  { id: "construction_debris", label: "Construction / renovation debris" },
-  { id: "hot_tub_playset", label: "Hot tub / playset" },
-  { id: "business_commercial", label: "Business / commercial cleanout" }
+  { id: "house-wash", label: "Whole home soft-wash" },
+  { id: "driveway", label: "Driveway / concrete cleaning" },
+  { id: "deck", label: "Deck / patio / porch" },
+  { id: "roof", label: "Roof soft-wash" },
+  { id: "gutter", label: "Gutter clear & flush" },
+  { id: "commercial", label: "Commercial exterior" }
 ];
 
 const JUNK_SIZE_OPTIONS: Array<{ id: PerceivedSize; label: string; hint: string }> = [
-  { id: "single_item", label: "Single item", hint: "One item (chair, mattress, small appliance)" },
-  { id: "min_pickup", label: "A few items (2-4 items)", hint: "A small pile, or 1-2 bulky pieces" },
-  { id: "half_trailer", label: "One room", hint: "One room, or about half a garage" },
-  { id: "three_quarter_trailer", label: "A couple rooms", hint: "2+ rooms, or a large garage pile" },
-  { id: "big_cleanout", label: "Big cleanout", hint: "Full garage, basement, or multiple rooms" },
+  { id: "single_item", label: "Small job", hint: "One small area or one surface" },
+  { id: "min_pickup", label: "Medium job", hint: "Typical driveway or one major surface" },
+  { id: "half_trailer", label: "Large job", hint: "Multiple surfaces or larger home exterior" },
+  { id: "three_quarter_trailer", label: "Extra large", hint: "Large property or multiple exterior areas" },
+  { id: "big_cleanout", label: "Multi-surface / large property", hint: "Multiple buildings or a lot of surface area" },
   { id: "not_sure", label: "Not sure", hint: "No problem. Photos help tighten the estimate." }
 ];
 
@@ -421,11 +419,11 @@ export function LeadForm({
       trackWebEvent({ event: "lead_form_quote_start", path: analyticsPath });
     }
     try {
-      const resolvedTypes: JunkType[] = !isBrush ? (types.length ? types : otherSelected ? ["general_junk"] : []) : [];
+      const resolvedTypes: JunkType[] = !isBrush ? (types.length ? types : otherSelected ? ["house-wash"] : []) : [];
       if (!isBrush && !resolvedTypes.length) {
         setStep(1);
         setQuoteState({ status: "idle" });
-        setError("Pick at least one type of junk.");
+        setError("Pick at least one service.");
         return;
       }
 
@@ -935,7 +933,7 @@ export function LeadForm({
       }
       if (!trackedScheduleRef.current) {
         trackedScheduleRef.current = true;
-        trackMetaEvent("Schedule", { content_name: "Book pickup", content_category: "junk_removal" });
+        trackMetaEvent("Schedule", { content_name: "Book service", content_category: "pressure_washing" });
         applyEnhancedConversionsUserData({
           name,
           phone,
@@ -1049,7 +1047,7 @@ export function LeadForm({
           if (step === 1) {
             const path = getAnalyticsPath();
             if (!isBrush && !types.length && !otherSelected) {
-              setError("Pick at least one type of junk.");
+              setError("Pick at least one service.");
               return;
             }
             if (isBrush && brushPrimary === "other" && brushOtherDetails.trim().length < 3) {
@@ -1297,12 +1295,12 @@ export function LeadForm({
 
             <div className="space-y-2">
               <label className="text-sm font-semibold text-neutral-800">
-                {isBrush ? "How big is the area?" : "How much junk are we hauling away?"}
+                {isBrush ? "How big is the area?" : "How big is the job?"}
               </label>
               <div
                 className="grid gap-2 sm:grid-cols-2"
                 role="radiogroup"
-                aria-label={isBrush ? "How big is the area?" : "How much junk are we hauling away?"}
+                aria-label={isBrush ? "How big is the area?" : "How big is the job?"}
               >
                 {(isBrush ? BRUSH_SIZE_OPTIONS : JUNK_SIZE_OPTIONS).map((opt) => {
                   const selected = perceivedSize === opt.id;
@@ -1633,7 +1631,7 @@ export function LeadForm({
                 </div>
                   <div className="space-y-3 rounded-lg border border-white/80 bg-white/80 p-3 text-sm">
                     <div className="text-xs font-semibold text-neutral-700">
-                      {isBrush && quoteState.needsInPersonEstimate ? "Request a time (pending confirmation)" : isBrush ? "Book this clearing" : "Book this pickup"}
+                      {isBrush && quoteState.needsInPersonEstimate ? "Request a time (pending confirmation)" : isBrush ? "Book this clearing" : "Book this service"}
                     </div>
                     <div className="grid gap-2 md:grid-cols-2">
                       <input
@@ -1880,7 +1878,7 @@ export function LeadForm({
                           ? "Request this time"
                           : isBrush
                             ? "Book this clearing"
-                            : "Book this pickup"}
+                            : "Book this service"}
                     </Button>
                     <Button asChild variant="secondary" className="justify-center">
                       <a href="tel:+14047772631" aria-label="Call to confirm and book">

@@ -1,6 +1,6 @@
-# StonegateOS Monorepo
+# MystOperatingSystem Monorepo
 
-StonegateOS is a monorepo for a local service business: a customer-facing website + booking flow, plus an internal CRM ("Team Console") for sales/ops/owners.
+MystOperatingSystem is a monorepo for a local service business: a customer-facing website + booking flow, plus an internal CRM ("Team Console") for sales/ops/owners.
 
 ## Apps
 - `apps/site`: public marketing site + `/book` + Team Console UI at `/team`.
@@ -120,13 +120,13 @@ pnpm --filter app dev
 Markdown/MDX content lives under `apps/site/content`. Re-run `pnpm -w build` after changes to regenerate static pages.
 
 ### Junk Removal Service Catalog
-The site ships with a junk removal catalog:
-- Rubbish (common household waste) (`apps/site/content/services/single-item.mdx`)
-- Furniture Removal (`apps/site/content/services/furniture.mdx`)
-- Appliance Removal (`apps/site/content/services/appliances.mdx`)
-- Yard Waste & Debris (`apps/site/content/services/yard-waste.mdx`)
-- Construction Debris (`apps/site/content/services/construction-debris.mdx`)
-- Hot Tub Removal (`apps/site/content/services/hot-tub.mdx`)
+The site ships with a pressure washing catalog:
+- Whole Home Soft-Wash (`apps/site/content/services/house-wash.mdx`)
+- Driveway Cleaning (`apps/site/content/services/driveway.mdx`)
+- Roof Soft-Wash (`apps/site/content/services/roof.mdx`)
+- Deck & Patio Cleaning (`apps/site/content/services/deck.mdx`)
+- Gutter Clear & Flush (`apps/site/content/services/gutter.mdx`)
+- Commercial Exterior (`apps/site/content/services/commercial.mdx`)
 
 Hero images point at placeholder assets under `apps/site/public/images/services/`. Replace them with real photos (same filenames) when ready.
 
@@ -139,15 +139,15 @@ The marketing site reads public branding from env at build time (no runtime DB f
 Note: This repo's marketing site is a starter template. For other businesses, it's expected you'll customize or replace the marketing site (BYO site) while keeping the CRM + automations as the reusable product.
 
 Placeholders currently in use:
-- Email: `austin@stonegatejunkremoval.com`
-- Phone: `(404) 777-2631`
-- Domain: `https://stonegatejunkremoval.com`
+- Email: `hello@mystpressurewashing.com`
+- Phone: `(XXX) XXX-XXXX`
+- Domain: `https://mystpressurewashing.com`
 
 ## Deployment
 Render deployment details are tracked in `DEPLOY-ON-RENDER.md` along with the generated `render.yaml` blueprint.
 
-If deploying Stonegate-branded site/API, ensure:
-- `NEXT_PUBLIC_SITE_URL` reflects the public domain (e.g., `https://stonegatejunkremoval.com`).
+If deploying a branded site/API, ensure:
+- `NEXT_PUBLIC_SITE_URL` reflects the public domain (e.g., `https://mystpressurewashing.com`).
 - `NEXT_PUBLIC_API_BASE_URL` and `API_BASE_URL` are set for site/server actions.
 - `ADMIN_API_KEY` is configured for admin routes and server actions.
 

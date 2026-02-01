@@ -35,7 +35,7 @@ function humanizeServiceId(value: string): string {
     .trim()
     .replace(/[_-]+/g, " ")
     .replace(/\s+/g, " ");
-  return clean.length ? clean.replace(/\b\w/g, (c) => c.toUpperCase()) : "Junk removal";
+  return clean.length ? clean.replace(/\b\w/g, (c) => c.toUpperCase()) : "Service";
 }
 
 export function normalizeServiceId(value: string): string {
@@ -49,7 +49,7 @@ export function normalizeServiceId(value: string): string {
 
 export function formatServiceLabel(value: string): string {
   const raw = typeof value === "string" ? value.trim() : "";
-  if (!raw) return "Junk removal";
+  if (!raw) return "Service";
 
   const lower = raw.toLowerCase();
   const aliasLabel = LABEL_ALIASES[lower] ?? LABEL_ALIASES[lower.replace(/_/g, "-")];
@@ -76,14 +76,14 @@ export function formatServiceLabels(services: string[]): string[] {
 
 export function joinServiceLabels(services: string[]): string {
   const labels = formatServiceLabels(services);
-  return labels.length ? labels.join(", ") : "Junk removal";
+  return labels.length ? labels.join(", ") : "Service";
 }
 
 export function summarizeServiceLabels(services: string[]): string {
   const labels = formatServiceLabels(services);
-  if (!labels.length) return "Junk removal";
+  if (!labels.length) return "Service";
   const [first, ...rest] = labels;
-  if (!first) return "Junk removal";
+  if (!first) return "Service";
   return rest.length ? `${first} +${rest.length}` : first;
 }
 

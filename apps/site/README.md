@@ -1,4 +1,4 @@
-# Stonegate Site App
+# Myst Site App
 
 Public marketing site plus the Team Console UI.
 

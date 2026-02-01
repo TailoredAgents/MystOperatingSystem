@@ -526,7 +526,7 @@ export async function OutboundSection({
                   <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-900">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700">Call script</p>
                     <p className="mt-1">
-                      Hi, this is Stonegate Junk Removal in Georgia. We help property managers with unit cleanouts and bulk pickup. Do you handle any properties that need haul-off this month?
+                      Hi, this is Myst Pressure Washing in Georgia. We help property managers keep exteriors clean with pressure washing and soft washing. Do you manage any properties that need exterior cleaning this month?
                     </p>
                   </div>
 

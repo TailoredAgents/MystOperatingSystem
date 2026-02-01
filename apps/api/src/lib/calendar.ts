@@ -151,7 +151,7 @@ function buildEventBody(
     `Contact: ${payload.contact.name}`,
     payload.contact.phone ? `Phone: ${payload.contact.phone}` : null,
     payload.contact.email ? `Email: ${payload.contact.email}` : null,
-    `Services: ${payload.services.join(", ") || "Junk removal"}`,
+    `Services: ${payload.services.join(", ") || "Service"}`,
     `Location: ${payload.property.addressLine1}, ${payload.property.city}, ${payload.property.state} ${payload.property.postalCode}`
   ].filter((line): line is string => Boolean(line));
 
@@ -222,7 +222,7 @@ export async function createCalendarEvent(
   const response = await googleRequest(config, accessToken, null, {
     method: "POST",
     body: JSON.stringify({
-      summary: `Stonegate Junk Removal: ${payload.contact.name}`,
+      summary: `Myst Pressure Washing: ${payload.contact.name}`,
       description: eventBody.description,
       start: {
         dateTime: eventBody.bufferStart.toISO(),
@@ -287,7 +287,7 @@ export async function updateCalendarEvent(
   const response = await googleRequest(config, accessToken, eventId, {
     method: "PATCH",
     body: JSON.stringify({
-      summary: `Stonegate Junk Removal: ${payload.contact.name}`,
+      summary: `Myst Pressure Washing: ${payload.contact.name}`,
       description: eventBody.description,
       start: {
         dateTime: eventBody.bufferStart.toISO(),

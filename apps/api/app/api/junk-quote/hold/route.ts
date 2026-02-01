@@ -88,6 +88,13 @@ function overlapsCount(blocks: Array<{ start: Date; end: Date }>, start: Date, e
 
 function deriveDurationMinutes(quote: { aiResult: unknown; perceivedSize: string }): number {
   const ai = isRecord(quote.aiResult) ? quote.aiResult : null;
+  const directDuration =
+    typeof ai?.["durationMinutes"] === "number" && Number.isFinite(ai["durationMinutes"]) && ai["durationMinutes"] > 0
+      ? Math.round(ai["durationMinutes"])
+      : null;
+  if (directDuration !== null) {
+    return Math.max(60, Math.min(Math.trunc(directDuration), 8 * 60));
+  }
   const priceHigh = typeof ai?.["priceHigh"] === "number" ? ai["priceHigh"] : null;
   const maxUnits =
     typeof priceHigh === "number" && Number.isFinite(priceHigh) && priceHigh > 0 ? Math.round(priceHigh / 200) : null;

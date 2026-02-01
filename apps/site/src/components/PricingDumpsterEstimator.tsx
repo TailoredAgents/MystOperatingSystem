@@ -637,7 +637,7 @@ function PricingDumpsterEstimatorInner({ className }: { className?: string }) {
         <div className="mt-3 relative aspect-[16/9] overflow-hidden rounded-xl">
           <Image
             src="/images/gallery/trailer_16x9.jpg"
-            alt="Stonegate trailer used for junk removal pricing by volume"
+            alt="Service visual used for pricing illustration"
             fill
             className="object-cover"
             sizes="(min-width: 768px) 768px, 100vw"

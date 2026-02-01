@@ -251,7 +251,7 @@ async function ensureSystemParticipant(db: DbExecutor, threadId: string, created
     .values({
       threadId,
       participantType: "system",
-      displayName: "Stonegate Assistant",
+      displayName: "Myst Assistant",
       createdAt
     })
     .returning({ id: conversationParticipants.id });
@@ -748,7 +748,7 @@ export async function handleInboundAutoReply(messageId: string): Promise<AutoRep
     replyChannel === "email"
       ? row.threadSubject?.trim().length
         ? `Re: ${row.threadSubject}`
-        : "Stonegate Junk Removal"
+        : "Myst Pressure Washing"
       : null;
   const isDraft = selectedMode === "draft";
   const inboundMetadata = isRecord(row.metadata) ? row.metadata : null;

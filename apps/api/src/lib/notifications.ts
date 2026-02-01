@@ -49,9 +49,9 @@ export async function sendEstimateCancellation(payload: EstimateNotificationPayl
   const { contact, appointment } = payload;
   const when = formatDateTime(appointment.startAt);
 
-  const smsBody = `Stonegate: Your appointment for ${when} was canceled. Reply here if you want to rebook.`;
-  const emailSubject = `Canceled: Stonegate appointment ${when}`;
-  const emailBody = `Your Stonegate Junk Removal appointment for ${when} was canceled.\n\nReply to this email (or text us) if you want to rebook.`;
+  const smsBody = `Myst: Your appointment for ${when} was canceled. Reply here if you want to rebook.`;
+  const emailSubject = `Canceled: Myst appointment ${when}`;
+  const emailBody = `Your Myst Pressure Washing appointment for ${when} was canceled.\n\nReply to this email (or text us) if you want to rebook.`;
 
   if (contact.phone) {
     if (payload.contactId) {
@@ -164,7 +164,7 @@ function createIcsAttachment(payload: EstimateNotificationPayload): {
   const end = start.plus({ minutes: appointment.durationMinutes ?? 60 });
   const stamp = DateTime.utc();
 
-  const summary = `Stonegate Junk Removal - ${contact.name}`;
+  const summary = `Myst Pressure Washing - ${contact.name}`;
   const descriptionLines = [
     `Services: ${joinServiceLabels(payload.services)}`,
     payload.notes ? `Notes: ${payload.notes}` : null,
@@ -178,7 +178,7 @@ function createIcsAttachment(payload: EstimateNotificationPayload): {
   const content = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Stonegate//Appointment Scheduler//EN",
+    "PRODID:-//Myst//Appointment Scheduler//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:REQUEST",
     "BEGIN:VEVENT",
@@ -194,7 +194,7 @@ function createIcsAttachment(payload: EstimateNotificationPayload): {
   ].join("\r\n");
 
   return {
-    filename: "stonegate-appointment.ics",
+    filename: "myst-appointment.ics",
     content,
     contentType: "text/calendar; charset=utf-8; method=REQUEST"
   };
@@ -346,7 +346,7 @@ export async function sendEstimateConfirmation(
   const rescheduleUrl = buildRescheduleUrl(appointment);
   const headline = reason === "requested" ? "You're booked!" : "Appointment updated";
 
-  const fallbackSubject = `Stonegate Junk Removal - ${when}`;
+  const fallbackSubject = `Myst Pressure Washing - ${when}`;
   const fallbackBody = [
     `${headline} We'll see you ${when}.`,
     `Location: ${property.addressLine1}, ${property.city}, ${property.state} ${property.postalCode}`,
@@ -361,8 +361,8 @@ export async function sendEstimateConfirmation(
 
   const fallbackSms =
     reason === "requested"
-      ? `Stonegate: You're booked for ${when}. Reply here if you need changes.`
-      : `Stonegate: Updated appointment to ${when}. Reply here if you need changes.`;
+      ? `Myst: You're booked for ${when}. Reply here if you need changes.`
+      : `Myst: Updated appointment to ${when}. Reply here if you need changes.`;
 
   let generated = null;
   if (rescheduleUrl) {
@@ -429,15 +429,15 @@ async function sendEstimateReminderInternal(
   const windowHours = Math.round(options.windowMinutes / 60);
 
   const fallbackSms = rescheduleUrl
-    ? `Stonegate reminder: appointment in ${windowHours}h (${when}). Need to reschedule? ${rescheduleUrl}`
-    : `Stonegate reminder: appointment in ${windowHours}h (${when}). Reply here if you need changes.`;
+    ? `Myst reminder: appointment in ${windowHours}h (${when}). Need to reschedule? ${rescheduleUrl}`
+    : `Myst reminder: appointment in ${windowHours}h (${when}). Reply here if you need changes.`;
   const fallbackEmailBody = [
-    `Quick reminder: your Stonegate Junk Removal appointment is in ${windowHours} hours (${when}).`,
+    `Quick reminder: your Myst Pressure Washing appointment is in ${windowHours} hours (${when}).`,
     `Location: ${payload.property.addressLine1}, ${payload.property.city}, ${payload.property.state} ${payload.property.postalCode}`,
     "",
     rescheduleUrl ? `Need to adjust? ${rescheduleUrl}` : "Need to adjust? Reply to this message."
   ].join("\n");
-  const fallbackSubject = `Reminder: Stonegate appointment ${when}`;
+  const fallbackSubject = `Reminder: Myst appointment ${when}`;
 
   let generated = null;
   if (rescheduleUrl) {
@@ -538,7 +538,7 @@ export async function sendEstimateReminder2h(payload: EstimateNotificationPayloa
 export async function sendQuoteSentNotification(payload: QuoteNotificationPayload): Promise<void> {
   const expiresIso = payload.expiresAt ? payload.expiresAt.toISOString() : null;
 
-  const fallbackSubject = "Your Stonegate Junk Removal quote is ready";
+  const fallbackSubject = "Your Myst Pressure Washing quote is ready";
   const fallbackBody = [
     `Hi ${payload.contact.name},`,
     "",
@@ -553,7 +553,7 @@ export async function sendQuoteSentNotification(payload: QuoteNotificationPayloa
     .filter((line): line is string => Boolean(line))
     .join("\n");
 
-  const fallbackSms = `Stonegate quote ready: ${formatCurrency(payload.total)}. Review ${payload.shareUrl}`;
+  const fallbackSms = `Myst quote ready: ${formatCurrency(payload.total)}. Review ${payload.shareUrl}`;
 
   let generated = null;
   try {
@@ -638,8 +638,8 @@ export async function sendQuoteDecisionNotification(
 ): Promise<void> {
   const fallbackSubject =
     payload.decision === "accepted"
-      ? "Stonegate quote approved"
-      : "Stonegate quote decision received";
+      ? "Myst quote approved"
+      : "Myst quote decision received";
   const fallbackBody = [
     `Hi ${payload.contact.name},`,
     "",
@@ -657,8 +657,8 @@ export async function sendQuoteDecisionNotification(
 
   const fallbackSms =
     payload.decision === "accepted"
-      ? "Stonegate: thanks for approving your quote! We'll follow up with scheduling details."
-      : "Stonegate: we've recorded your quote decision. Let us know if you'd like any adjustments.";
+      ? "Myst: thanks for approving your quote! We'll follow up with scheduling details."
+      : "Myst: we've recorded your quote decision. Let us know if you'd like any adjustments.";
 
   let generated = null;
   try {

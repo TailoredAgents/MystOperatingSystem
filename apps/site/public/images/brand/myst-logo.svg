@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="110" viewBox="0 0 220 110" role="img" aria-label="Myst Pressure Washing">
+  <defs>
+    <linearGradient id="mystGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="208" height="98" rx="22" fill="white" stroke="#e5e7eb" stroke-width="4" />
+  <text x="110" y="66" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="44" font-weight="800" fill="url(#mystGradient)">
+    Myst
+  </text>
+</svg>

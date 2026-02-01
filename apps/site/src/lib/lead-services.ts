@@ -5,11 +5,10 @@ export type LeadServiceOption = {
 };
 
 export const DEFAULT_LEAD_SERVICE_OPTIONS: LeadServiceOption[] = [
-  { slug: "single-item", title: "Rubbish", description: "Common household waste" },
-  { slug: "furniture", title: "Furniture Removal", description: "Sofas, dressers, desks, and more" },
-  { slug: "appliances", title: "Appliance Removal", description: "Refrigerators, washers, dryers" },
-  { slug: "yard-waste", title: "Yard Waste & Debris", description: "Brush, branches, and bagged leaves" },
-  { slug: "brush-clearing", title: "Brush Clearing", description: "Overgrowth, vines, and storm debris" },
-  { slug: "construction-debris", title: "Construction Debris", description: "Renovation leftovers and materials" },
-  { slug: "hot-tub", title: "Hot Tub Removal", description: "Cut-up and haul away" }
+  { slug: "house-wash", title: "Whole Home Soft-Wash", description: "Siding, brick, and trim — surface-safe cleaning" },
+  { slug: "driveway", title: "Driveway Cleaning", description: "Concrete and pavers cleaned and brightened" },
+  { slug: "roof", title: "Roof Soft-Wash", description: "Algae and streaking treated with low-pressure methods" },
+  { slug: "deck", title: "Deck & Patio Restore", description: "Patios, porches, and decks cleaned carefully" },
+  { slug: "gutter", title: "Gutter Clear & Flush", description: "Hand-clear gutters and flush downspouts" },
+  { slug: "commercial", title: "Commercial Exterior", description: "Storefronts and shared spaces — custom quotes" }
 ];

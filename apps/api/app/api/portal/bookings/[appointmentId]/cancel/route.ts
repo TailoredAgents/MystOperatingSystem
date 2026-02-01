@@ -153,8 +153,8 @@ export async function POST(
     })();
 
     const partnerName = partnerUser?.name?.trim().length ? partnerUser.name.trim() : "there";
-    const smsBody = `Stonegate: booking canceled for ${when} at ${address}. Reply here if you want to rebook.`;
-    const emailSubject = "Stonegate Partner booking canceled";
+    const smsBody = `Myst: booking canceled for ${when} at ${address}. Reply here if you want to rebook.`;
+    const emailSubject = "Myst Partner booking canceled";
     const emailBody = [
       `Hi ${partnerName},`,
       "",

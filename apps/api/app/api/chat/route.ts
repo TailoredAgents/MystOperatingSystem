@@ -195,7 +195,7 @@ async function buildContext(): Promise<{
   ]);
 
   const systemPrompt = `
-You are Stonegate Assist, the internal assistant for the Stonegate junk removal team. Provide concise, actionable guidance.
+You are Myst Assist, the internal assistant for the Myst pressure washing team. Provide concise, actionable guidance.
 
 Current context:
 Contacts:

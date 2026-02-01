@@ -30,7 +30,7 @@ export default async function TeamLoginPage({
   return (
     <div className="space-y-5">
       <header className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/50">
-        <h1 className="text-2xl font-semibold text-slate-900">Stonegate Team Console</h1>
+        <h1 className="text-2xl font-semibold text-slate-900">Myst Team Console</h1>
         <p className="mt-1 text-sm text-slate-600">Sign in with your work email (magic link) or password.</p>
         {sent ? (
           <div className="mt-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
@@ -56,7 +56,7 @@ export default async function TeamLoginPage({
                 type="text"
                 required
                 className="mt-1 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100"
-                placeholder="you@stonegatejunkremoval.com or +16785551234"
+                placeholder="you@mystpressurewashing.com or +16785551234"
               />
             </label>
             <button
@@ -79,7 +79,7 @@ export default async function TeamLoginPage({
                 type="email"
                 required
                 className="mt-1 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100"
-                placeholder="you@stonegatejunkremoval.com"
+                placeholder="you@mystpressurewashing.com"
               />
             </label>
             <label className="block">

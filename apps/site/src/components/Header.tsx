@@ -8,10 +8,10 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { Button, cn } from "@myst-os/ui";
 import { PRICING_ESTIMATOR_QUERY_KEYS } from "@/lib/pricing-estimator";
 
-const FALLBACK_COMPANY_NAME = "Stonegate Junk Removal";
-const FALLBACK_PHONE_DISPLAY = "(404) 777-2631";
-const FALLBACK_PHONE_E164 = "+14047772631";
-const FALLBACK_LOGO_PATH = "/images/brand/Stonegatelogo.png";
+const FALLBACK_COMPANY_NAME = "Myst Pressure Washing";
+const FALLBACK_PHONE_DISPLAY = "(000) 000-0000";
+const FALLBACK_PHONE_E164 = "+10000000000";
+const FALLBACK_LOGO_PATH = "/images/brand/myst-logo.svg";
 
 function normalizePhoneE164(value: string): string {
   const trimmed = value.trim();
@@ -25,7 +25,7 @@ function normalizePhoneE164(value: string): string {
 
 const navItems = [
   { href: "/services", label: "Services" },
-  { href: "/contractors", label: "For Contractors" },
+  { href: "/contractors", label: "Commercial" },
   { href: "/areas", label: "Service Areas" },
   { href: "/pricing", label: "Pricing" },
   { href: "/blog", label: "Blog" },

@@ -114,7 +114,7 @@ export function TeamChatClient({ contacts }: { contacts: ContactOption[] }) {
     {
       id: "intro",
       sender: "bot",
-      text: "Hi! I'm Stonegate Assist. Ask about schedules, follow-ups, pricing ranges, or workflow tips."
+      text: "Hi! I’m Myst Assist. Ask about schedules, follow-ups, pricing, or workflow tips."
     }
   ]);
   const [input, setInput] = React.useState("");
@@ -677,7 +677,7 @@ export function TeamChatClient({ contacts }: { contacts: ContactOption[] }) {
       <div className="rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-xl shadow-slate-200/60 backdrop-blur">
         <header className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-lg font-semibold text-slate-900">Stonegate Assist Chat</h2>
+            <h2 className="text-lg font-semibold text-slate-900">Myst Assist Chat</h2>
             <p className="text-sm text-slate-500">
               Quick answers for owners and crew. Ask about workflow steps, pricing ranges, or customer messaging.
             </p>

@@ -235,7 +235,7 @@ export function ContactsDetailsPaneClient({ contact, teamMembers }: Props): Reac
               return;
             }
             const label = contact.phone ?? "this contact";
-            if (!window.confirm(`Call ${contact.name} (${label}) from the Stonegate number?`)) {
+            if (!window.confirm(`Call ${contact.name} (${label}) from the Myst number?`)) {
               event.preventDefault();
             }
           }}

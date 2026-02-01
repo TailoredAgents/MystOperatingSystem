@@ -5,12 +5,12 @@ import { getPublicCompanyProfile } from "./company";
 const company = getPublicCompanyProfile();
 const fallbackTitle = company.name;
 const fallbackDescription =
-  "Fast, reliable junk removal and hauling across North Metro Atlanta. Schedule an on-site estimate and get clutter cleared responsibly with licensed, insured crews.";
+  "Professional pressure washing and soft washing across North Metro Atlanta. Request an estimate and restore your curb appeal with safe, insured crews.";
 
 const configuredSiteUrl = process.env["NEXT_PUBLIC_SITE_URL"]?.trim();
 const normalizedSiteUrl = configuredSiteUrl && /^https?:\/\//.test(configuredSiteUrl)
   ? configuredSiteUrl.replace(/\/+$/u, "")
-  : "https://stonegatejunkremoval.com";
+  : "https://mystpressurewashing.com";
 
 export const siteUrl = normalizedSiteUrl;
 

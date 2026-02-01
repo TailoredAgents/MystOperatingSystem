@@ -139,11 +139,11 @@ export async function POST(request: NextRequest): Promise<Response> {
       const url = new URL("/partners/auth", siteBaseUrl);
       url.searchParams.set("token", rawToken);
 
-      const subject = "Your Stonegate Partner Portal login link";
+      const subject = "Your Myst Partner Portal login link";
       const body = [
         `Hi ${user.name},`,
         "",
-        "Here's your secure login link for the Stonegate Partner Portal:",
+        "Here's your secure login link for the Myst Partner Portal:",
         url.toString(),
         "",
         `This link expires at ${expiresAt.toISOString()}.`,
@@ -151,7 +151,7 @@ export async function POST(request: NextRequest): Promise<Response> {
         "If you didn't request this, you can ignore this email."
       ].join("\n");
 
-      const smsBody = `Stonegate Partner Portal login link: ${url.toString()} (expires ${expiresAt.toISOString()})`;
+      const smsBody = `Myst Partner Portal login link: ${url.toString()} (expires ${expiresAt.toISOString()})`;
 
       await Promise.allSettled([
         sendEmailMessage(user.email, subject, body),
@@ -166,8 +166,8 @@ export async function POST(request: NextRequest): Promise<Response> {
     await Promise.allSettled([
       upsertAccessRequestTask(),
       alertSales(),
-      email ? sendEmailMessage(email, "Stonegate Partner Portal request received", "Thanks! If you're invited, you'll receive a login link shortly. If not, we'll reach out to get you set up.") : Promise.resolve(),
-      phoneE164 ? sendSmsMessage(phoneE164, "Stonegate: request received. If you're invited, you'll get a login link shortly. If not, we'll reach out to get you set up.") : Promise.resolve()
+      email ? sendEmailMessage(email, "Myst Partner Portal request received", "Thanks! If you're invited, you'll receive a login link shortly. If not, we'll reach out to get you set up.") : Promise.resolve(),
+      phoneE164 ? sendSmsMessage(phoneE164, "Myst: request received. If you're invited, you'll get a login link shortly. If not, we'll reach out to get you set up.") : Promise.resolve()
     ]);
   }
 

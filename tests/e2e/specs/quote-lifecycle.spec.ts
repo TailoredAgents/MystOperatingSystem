@@ -26,7 +26,7 @@ test.describe("Quote lifecycle journey", () => {
       await api.post(
         "/api/web/lead-intake",
         {
-          services: ["furniture"],
+          services: ["house-wash"],
           name: "Casey Quote",
           phone: phoneDisplay,
           email: contactEmail,
@@ -61,7 +61,7 @@ test.describe("Quote lifecycle journey", () => {
         contactId: leadRecord.contactId,
         propertyId: leadRecord.propertyId,
         zoneId: "zone-core",
-        selectedServices: ["furniture"],
+        selectedServices: ["house-wash"],
         applyBundles: true,
         notes: "Playwright automated quote scenario."
       });
@@ -98,7 +98,7 @@ test.describe("Quote lifecycle journey", () => {
 
     await test.step("Customer accepts quote", async () => {
       await page.goto(shareUrl);
-      await expect(page.getByRole("heading", { name: /exterior cleaning quote/i })).toBeVisible();
+      await expect(page.getByRole("heading", { name: /your quote/i })).toBeVisible();
       await page.getByRole("button", { name: "Accept quote" }).click();
 
       await expect(page.getByText("Accepted")).toBeVisible();
@@ -127,7 +127,7 @@ test.describe("Quote lifecycle journey", () => {
       const decisionSms = await waitForTwilioMessage(
         (message) => message.to === phoneE164 && message.body.toLowerCase().includes("thanks")
       );
-      expect(decisionSms.body).toContain("Stonegate");
+      expect(decisionSms.body).toContain("Myst");
 
       // Skip clearing shared inboxes; rely on unique email/phone tags per test run.
     });

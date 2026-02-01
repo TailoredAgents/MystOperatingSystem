@@ -167,9 +167,9 @@ export default async function PublicQuotePage({
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-8 px-4 py-10 sm:px-6">
       <header className="flex flex-col gap-3">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
-        <span>Stonegate Junk Removal • Licensed & insured • Make-It-Right Guarantee</span>
+        <span>Myst Pressure Washing • Licensed & insured</span>
         </p>
-        <h1 className="text-3xl font-semibold text-primary-900">Your junk removal quote</h1>
+        <h1 className="text-3xl font-semibold text-primary-900">Your quote</h1>
         <div className="flex flex-wrap items-center gap-2 text-sm text-neutral-500">
           <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${statusTone(quote.status)}`}>
             {statusLabel(quote.status)}
@@ -261,7 +261,7 @@ export default async function PublicQuotePage({
 
       {quote.expired ? (
         <section className="rounded-lg border border-rose-300 bg-rose-50 p-4 text-sm text-rose-700">
-        <span>Stonegate Junk Removal • Licensed & insured • Make-It-Right Guarantee</span>
+        <span>Myst Pressure Washing • Licensed & insured</span>
         </section>
       ) : null}
 
@@ -289,7 +289,7 @@ export default async function PublicQuotePage({
       ) : null}
 
       <footer className="mt-auto flex flex-wrap items-center justify-between gap-3 text-xs text-neutral-500">
-        <span>Stonegate Junk Removal • Licensed & insured • Make-It-Right Guarantee</span>
+        <span>Myst Pressure Washing • Licensed & insured</span>
         <Link href="/" className="text-accent-600 hover:underline">
           Back to homepage
         </Link>

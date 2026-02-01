@@ -292,11 +292,11 @@ export async function POST(request: NextRequest): Promise<Response> {
       const url = new URL("/partners/auth", siteBaseUrl);
       url.searchParams.set("token", rawToken);
 
-      const subject = "You've been invited to the Stonegate Partner Portal";
+      const subject = "You've been invited to the Myst Partner Portal";
       const body = [
         `Hi ${name},`,
         "",
-        "You now have access to the Stonegate Partner Portal to request and schedule service.",
+        "You now have access to the Myst Partner Portal to request and schedule service.",
         "",
         "Use this link to log in (expires in ~30 minutes):",
         url.toString(),
@@ -306,7 +306,7 @@ export async function POST(request: NextRequest): Promise<Response> {
         "After login, you can optionally set a password for faster sign-in next time."
       ].join("\n");
 
-      const smsBody = `Stonegate Partner Portal invite: ${url.toString()} (expires ${expiresAt.toISOString()})`;
+      const smsBody = `Myst Partner Portal invite: ${url.toString()} (expires ${expiresAt.toISOString()})`;
 
       await Promise.allSettled([
         sendEmailMessage(email, subject, body),
